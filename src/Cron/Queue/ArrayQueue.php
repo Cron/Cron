@@ -12,14 +12,33 @@ namespace Cron\Queue;
 
 use Cron\Command\CommandInterface;
 
-interface QueueInterface
+class ArrayQueue implements QueueInterface
 {
+    /**
+     * @var \SplPriorityQueue
+     */
+    protected $queue;
+
+    /**
+     * Create an empty queue.
+     */
+    public function __construct()
+    {
+        $this->queue = new \SplPriorityQueue();
+    }
+
     /**
      * Get the next command on the queue.
      *
      * @return CommandInterface
      */
-    public function next();
+    public function next()
+    {
+        $command = $this->queue->current();
+        $this->queue->next();
+
+        return $command;
+    }
 
     /**
      * Remove the command from the queue.
@@ -27,7 +46,10 @@ interface QueueInterface
      * @param \Cron\Command\CommandInterface $command
      * @return mixed
      */
-    public function remove(CommandInterface $command);
+    public function remove(CommandInterface $command)
+    {
+        //$this->queue->dequeue($command);
+    }
 
     /**
      * Add a command to the queue.
@@ -35,5 +57,10 @@ interface QueueInterface
      * @param \Cron\Command\CommandInterface $command
      * @return mixed
      */
-    public function add(CommandInterface $command);
+    public function add(CommandInterface $command)
+    {
+        $this->queue->insert($command, 0);
+    }
+
+
 }
