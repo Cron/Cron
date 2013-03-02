@@ -1,0 +1,20 @@
+{
+    "name": "cron/cron",
+    "type": "library",
+    "description": "Cronjobs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dries De Peuter",
+            "email": "dries@nousefreak.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0" : {
+            "Blockr" : "src/"
+        }
+    }
+}
