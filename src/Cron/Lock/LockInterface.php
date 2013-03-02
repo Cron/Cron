@@ -18,7 +18,7 @@ interface LockInterface
      * Check if a command is locked.
      *
      * @param \Cron\Command\CommandInterface $command
-     * @return mixed
+     * @return bool
      */
     public function isLocked(CommandInterface $command);
 
@@ -26,7 +26,7 @@ interface LockInterface
      * Lock a command.
      *
      * @param \Cron\Command\CommandInterface $command
-     * @return mixed
+     * @return bool
      */
     public function setLock(CommandInterface $command);
 
@@ -34,7 +34,7 @@ interface LockInterface
      * Remove the lock.
      *
      * @param \Cron\Command\CommandInterface $command
-     * @return mixed
+     * @return bool
      */
     public function removeLock(CommandInterface $command);
 }

@@ -25,6 +25,12 @@ class Cron
      */
     protected $queue;
 
+    /**
+     * Build the cron object.
+     *
+     * @param Lock\LockInterface $lock
+     * @param Queue\QueueInterface $queue
+     */
     public function __construct(LockInterface $lock, QueueInterface $queue)
     {
         $this->lock = $lock;
