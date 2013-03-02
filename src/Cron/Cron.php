@@ -46,10 +46,12 @@ class Cron
 
         $this->lock->setLock($command);
 
-        $command->execute();
+        $result = $command->execute();
 
         $this->lock->removeLock($command);
         $this->queue->remove($command);
+
+        return $result;
     }
 
     /**
