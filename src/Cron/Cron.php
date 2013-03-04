@@ -44,14 +44,17 @@ class Cron
     {
         $command = $this->getCommand();
 
-        $this->lock->setLock($command);
+	    if ($command) {
+	        $this->lock->setLock($command);
 
-        $result = $command->execute();
+	        $result = $command->execute();
 
-        $this->lock->removeLock($command);
-        $this->queue->remove($command);
+	        $this->lock->removeLock($command);
+	        $this->queue->remove($command);
 
-        return $result;
+	        return $result;
+	    }
+	    return false;
     }
 
     /**

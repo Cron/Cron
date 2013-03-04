@@ -48,4 +48,14 @@ class CronTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('command1', $cron->execute());
         $this->assertEquals('command2', $cron->execute());
     }
+
+	public function testEmptyQueue()
+	{
+		$queue = new ArrayQueue();
+
+		$lock = new FileLock(vfsStream::url('lockDir/lockFile'));
+		$cron = new Cron($lock, $queue);
+
+		$this->assertFalse($cron->execute());
+	}
 }
