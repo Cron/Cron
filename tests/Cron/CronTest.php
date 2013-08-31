@@ -8,54 +8,63 @@
  * file that was distributed with this source code.
  */
 
-namespace Cron\Test;
+namespace Cron;
 
-use Cron\Command\CallbackCommand;
-use Cron\Cron;
-use Cron\Lock\FileLock;
-use Cron\Queue\ArrayQueue;
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
-use org\bovigo\vfs\vfsStreamFile;
+use Cron\Executor\Executor;
+use Cron\Resolver\ArrayResolver;
+use Cron\Job\ShellJob;
 
+/**
+ * @author Dries De Peuter <dries@nousefreak.be>
+ */
 class CronTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Cron
+     */
+    private $cron;
+
     public function setUp()
     {
-        $root = vfsStream::setup();
-        $dir = new vfsStreamDirectory('lockDir');
-        $file = new vfsStreamFile('lockFile');
-        $dir->addChild($file);
-        $root->addChild($dir);
+        $this->cron = new Cron();
     }
 
-    public function test()
+    public function tearDown()
     {
-        $command1 = new CallbackCommand('testCommand', function() {
-            return 'command1';
-        });
-        $command2 = new CallbackCommand('testCommand2', function() {
-            return 'command2';
-        });
-
-        $queue = new ArrayQueue();
-        $queue->add($command1);
-        $queue->add($command2);
-
-        $lock = new FileLock(vfsStream::url('lockDir/lockFile'));
-        $cron = new Cron($lock, $queue);
-
-        $this->assertEquals('command1', $cron->execute());
-        $this->assertEquals('command2', $cron->execute());
+        unset($this->cron);
     }
 
-	public function testEmptyQueue()
-	{
-		$queue = new ArrayQueue();
+    public function testExecutor()
+    {
+        $executor = new Executor();
+        $this->cron->setExecutor($executor);
 
-		$lock = new FileLock(vfsStream::url('lockDir/lockFile'));
-		$cron = new Cron($lock, $queue);
+        $this->assertEquals($executor, $this->cron->getExecutor());
+    }
 
-		$this->assertFalse($cron->execute());
-	}
+    public function testResolver()
+    {
+        $resolver = new ArrayResolver();
+        $this->cron->setResolver($resolver);
+
+        $this->assertEquals($resolver, $this->cron->getResolver());
+    }
+
+    public function testRunReport()
+    {
+        $this->cron->setResolver(new ArrayResolver());
+        $this->cron->setExecutor(new Executor());
+
+        $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->cron->run());
+    }
+
+    public function testRunArray()
+    {
+        $task = new ShellJob();
+
+        $this->cron->setResolver(new ArrayResolver(array($task)));
+        $this->cron->setExecutor(new Executor());
+
+        $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->cron->run());
+    }
 }

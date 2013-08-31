@@ -8,16 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Cron\Command;
+namespace Cron\Report;
 
-interface CommandInterface
+/**
+ * @author Dries De Peuter <dries@nousefreak.be>
+ */
+interface ReportInterface
 {
     /**
-     * Return a unique string identifying this command.
-     *
-     * @return string
+     * @return bool
      */
-    public function getHash();
-
-    public function execute();
+    public function isSuccessful();
 }

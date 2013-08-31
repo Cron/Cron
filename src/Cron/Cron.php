@@ -7,68 +7,65 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
- 
+
 namespace Cron;
 
-use Cron\Lock\LockInterface;
-use Cron\Queue\QueueInterface;
+use Cron\Executor\ExecutorInterface;
+use Cron\Resolver\ResolverInterface;
+use Cron\Report\ReportInterface;
 
+/**
+ * @author Dries De Peuter <dries@nousefreak.be>
+ */
 class Cron
 {
     /**
-     * @var Lock\LockInterface
+     * @var ResolverInterface
      */
-    protected $lock;
+    private $resolver;
 
     /**
-     * @var Queue\QueueInterface
+     * @var ExecutorInterface
      */
-    protected $queue;
+    private $executor;
 
     /**
-     * Build the cron object.
-     *
-     * @param Lock\LockInterface $lock
-     * @param Queue\QueueInterface $queue
+     * @return ReportInterface[]
      */
-    public function __construct(LockInterface $lock, QueueInterface $queue)
+    public function run()
     {
-        $this->lock = $lock;
-        $this->queue = $queue;
+        return $this->getExecutor()->execute($this->getResolver()->resolve());
     }
 
     /**
-     * Execute the the first cron command.
+     * @param ResolverInterface $resolver
      */
-    public function execute()
+    public function setResolver(ResolverInterface $resolver)
     {
-        $command = $this->getCommand();
-
-	    if ($command) {
-	        $this->lock->setLock($command);
-
-	        $result = $command->execute();
-
-	        $this->lock->removeLock($command);
-	        $this->queue->remove($command);
-
-	        return $result;
-	    }
-	    return false;
+        $this->resolver = $resolver;
     }
 
     /**
-     * Get the first command free to execute.
-     *
-     * @return Command\CommandInterface
+     * @return ResolverInterface
      */
-    protected function getCommand()
+    public function getResolver()
     {
-        do {
-            $command = $this->queue->next();
-        }
-        while ($command && $this->lock->isLocked($command));
+        return $this->resolver;
+    }
 
-        return $command;
+    /**
+     * @param ExecutorInterface $executor
+     */
+    public function setExecutor(ExecutorInterface $executor)
+    {
+        $this->executor = $executor;
+    }
+
+    /**
+     * @return ExecutorInterface
+     */
+    public function getExecutor()
+    {
+        return $this->executor;
     }
 }

@@ -8,5 +8,17 @@
  * file that was distributed with this source code.
  */
 
-$loader = require_once __DIR__ . "/../vendor/autoload.php";
-$loader->add('Cron\\', __DIR__);
+namespace Cron\Resolver;
+
+use Cron\Job\JobInterface;
+
+/**
+ * @author Dries De Peuter <dries@nousefreak.be>
+ */
+interface ResolverInterface
+{
+    /**
+     * @return JobInterface[]
+     */
+    public function resolve();
+}
