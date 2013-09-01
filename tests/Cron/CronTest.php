@@ -67,4 +67,20 @@ class CronTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->cron->run());
     }
+
+    public function exampleTest()
+    {
+        $job = new \Cron\Job\ShellJob();
+        $job->setCommand('ls -la >> crontest.log');
+        $job->setSchedule(new \Cron\Schedule\CrontabSchedule('* * * * *'));
+
+        $resolver = new \Cron\Resolver\ArrayResolver();
+        $resolver->addJob($job);
+
+        $cron = new \Cron\Cron();
+        $cron->setExecutor(new \Cron\Executor\Executor());
+        $cron->setResolver($resolver);
+
+        $cron->run();
+    }
 }
