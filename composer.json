@@ -20,5 +20,10 @@
         "psr-0" : {
             "Cron" : "src/"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
