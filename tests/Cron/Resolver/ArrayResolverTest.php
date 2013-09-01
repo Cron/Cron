@@ -72,4 +72,15 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
             array(array($invalidJob, $validJob, $noScheduleJob), array($validJob, $noScheduleJob)),
         );
     }
+
+    public function testAddJobs()
+    {
+        $property = new \ReflectionProperty($this->resolver, 'jobs');
+        $property->setAccessible(true);
+
+        $job = new ShellJob();
+        $this->resolver->addJob($job);
+
+        $this->assertEquals(array($job), $property->getValue($this->resolver));
+    }
 }

@@ -11,6 +11,7 @@
 namespace Cron\Job;
 
 use Cron\Schedule\ScheduleInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
@@ -22,6 +23,9 @@ abstract class AbstractJob implements JobInterface
      */
     protected $schedule;
 
+    /**
+     * @var Process
+     */
     protected $process;
 
     /**

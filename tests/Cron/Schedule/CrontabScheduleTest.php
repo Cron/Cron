@@ -163,6 +163,9 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
         return $data;
     }
 
+    /**
+     * @return \DateTime[]
+     */
     public function dateProvider()
     {
         return array(
@@ -196,5 +199,16 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             array(array(0, 30), '*/30', array(0, 59)),
             array(array(0, 15, 30, 45), '*/15', array(0, 59)),
         );
+    }
+
+    public function testPatternSetters()
+    {
+        $pattern = '* * * * *';
+        $this->schedule->setPattern($pattern);
+
+        $this->assertEquals($pattern, $this->schedule->getPattern());
+
+        $schedule = new CrontabSchedule($pattern);
+        $this->assertEquals($pattern, $schedule->getPattern());
     }
 }

@@ -16,49 +16,16 @@ namespace Cron\Report;
 class CronReport implements ReportInterface
 {
     /**
-     * @var int
-     */
-    protected $successCount;
-
-    /**
-     * @var int
-     */
-    protected $failureCount;
-
-    /**
      * @var JobReport[]
      */
     protected $taskReports;
 
-    public function __construct()
-    {
-        $this->failureCount = 0;
-        $this->successCount = 0;
-    }
     /**
      * @return bool
      */
     public function isSuccessful()
     {
-        return 0 == $this->failureCount;
-    }
 
-    /**
-     * @param JobReport $report
-     */
-    public function addSuccess(JobReport $report)
-    {
-        $this->taskReports[] = $report;
-        $this->successCount++;
-    }
-
-    /**
-     * @param JobReport $report
-     */
-    public function addFailure(JobReport $report)
-    {
-        $this->taskReports[] = $report;
-        $this->failureCount++;
     }
 
     public function addJobReport(JobReport $report)
