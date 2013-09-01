@@ -1,7 +1,9 @@
 Cron
 ====
-
-[![Build Status](https://secure.travis-ci.org/NoUseFreak/Cron.png)](https://travis-ci.org/NoUseFreak/Cron)
+ [![Latest Stable Version](https://poser.pugx.org/cron/cron/v/stable.png)](https://packagist.org/packages/cron/cron)
+ [![Latest Unstable Version](https://poser.pugx.org/cron/cron/v/unstable.png)](//packagist.org/packages/cron/cron)
+ [![Build Status](https://secure.travis-ci.org/NoUseFreak/Cron.png)](https://travis-ci.org/NoUseFreak/Cron)
+ [![Total Downloads](https://poser.pugx.org/cron/cron/downloads.png)](https://packagist.org/packages/cron/cron)
 
 Cron enables you to schedule tasks. Cron will search those that need execution and run them. 
 
