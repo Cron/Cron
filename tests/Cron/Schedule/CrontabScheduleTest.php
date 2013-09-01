@@ -42,15 +42,24 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('* * * * *'),
+            array('* * * * * *'),
             array('*/2 * * * *'),
             array('* */2 * * *'),
             array('* * */2 * *'),
             array('* * * */2 *'),
             array('* * * * */2'),
+            array('* * * * * */2'),
             array('1 * * * */2'),
             array('1,3 * * * */2'),
             array('1 * 1,2 * */2'),
             array('1 * 1-2 * */2'),
+            array('1 * 1-2 * */2 */2'),
+            array('@yearly'),
+            array('@annually'),
+            array('@monthly'),
+            array('@weekly'),
+            array('@daily'),
+            array('@hourly'),
         );
     }
 
@@ -84,6 +93,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             array('* * * 1-13 *'),
             array('* * * * 7'),
             array('* * * * 1-7'),
+            array('@unknown'),
         );
     }
 
@@ -180,11 +190,11 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
     public function parseRuleProvider()
     {
         return array(
-            array(array(1), '1', array(0,59)),
-            array(array(1,2), '1,2', array(0,59)),
-            array(array(2,3,4), '2-4', array(0,59)),
-            array(array(0,30), '*/30', array(0,59)),
-            array(array(0,15,30,45), '*/15', array(0,59)),
+            array(array(1), '1', array(0, 59)),
+            array(array(1, 2), '1,2', array(0, 59)),
+            array(array(2, 3, 4), '2-4', array(0, 59)),
+            array(array(0, 30), '*/30', array(0, 59)),
+            array(array(0, 15, 30, 45), '*/15', array(0, 59)),
         );
     }
 }

@@ -14,7 +14,6 @@ use Cron\Report\CronReport;
 use Cron\Job\JobInterface;
 use Cron\Report\JobReport;
 use Cron\Report\ReportInterface;
-use Symfony\Component\Process\Process;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>

@@ -189,19 +189,43 @@ class CrontabSchedule implements ScheduleInterface
             'day' => '0?[1-9]|[12]\d|3[01]',
             'month' => '[1-9]|1[012]',
             'dow' => '[0-6]',
+            'year' => '20([0-9]{2})',
         );
 
         $regex = array();
-        foreach ($parts as $name => $number) {
+        foreach (array_slice($parts, 0, 5) as $name => $number) {
             $range = '(' . $number . ')(-(' . $number . '))?';
             $regex[$name] = '(?P<' . $name . '>(\*(\/\d+)?|' . $range . '(,' . $range . ')*))';
         }
+        $range = '(' . $parts['year'] . ')(-(' . $parts['year'] . '))?';
+        $regex_year = '( (?P<year>(\*(\/\d+)?|' . $range . '(,' . $range . ')*)))?';
 
-        if (!preg_match('/^' . implode('([\s\t]+)', $regex) . '$/', $pattern, $matches)) {
+        $regex = '/^' . implode('([\s\t]+)', $regex) . $regex_year . '$/';
+
+        if (!preg_match($regex, $this->findReplacements($pattern), $matches)) {
             throw new \InvalidArgumentException;
         }
 
         return array_intersect_key($matches, $parts);
+    }
+
+    protected function findReplacements($pattern)
+    {
+        if (0 === strpos($pattern, '@')) {
+            $replace = array(
+                '@yearly'   => '0 0 1 1 * *',
+                '@annually' => '0 0 1 1 * *',
+                '@monthly'  => '0 0 1 * *',
+                '@weekly'   => '0 0 * * 0',
+                '@daily'    => '0 0 * * *',
+                '@hourly'   => '0 * * * *',
+            );
+            if (isset($replace[$pattern])) {
+                $pattern = $replace[$pattern];
+            }
+        }
+
+        return $pattern;
     }
 
     /**
