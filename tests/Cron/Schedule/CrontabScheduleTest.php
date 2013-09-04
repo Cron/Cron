@@ -152,7 +152,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $dow = (int)$now->format('w');
             $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
-            $data[] = array('* * * * *', new \DateTime('next week'), $now);
+            $data[] = array('* * * * *', new \DateTime('+8 days'), $now);
             $data[] = array($badMin . ' * * * *', new \DateTime('2 week ago'), $now);
             $data[] = array('* ' . $badHour . ' * * *', new \DateTime('2 week ago'), $now);
             $data[] = array('* * ' . $badDay . ' * *', new \DateTime('2 week ago'), $now);
