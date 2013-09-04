@@ -77,7 +77,7 @@ class CrontabSchedule implements ScheduleInterface
         return true;
     }
 
-    protected function checkMinute(\DateTIme $now)
+    protected function checkMinute(\DateTime $now)
     {
         if ($this->parts['min'] != '*') {
             foreach ($this->parseRule($this->parts['min'], 0, 59) as $value) {
@@ -92,7 +92,7 @@ class CrontabSchedule implements ScheduleInterface
         return null;
     }
 
-    protected function checkHour(\DateTIme $now)
+    protected function checkHour(\DateTime $now)
     {
         if ($this->parts['hour'] != '*') {
             foreach ($this->parseRule($this->parts['hour'], 0, 23) as $value) {
