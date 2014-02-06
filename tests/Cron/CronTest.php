@@ -87,6 +87,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
 
         while($cron->isRunning()) {}
 
-        $this->assertEquals('total', trim($report->getReport($job)->getOutput()[0]));
+        $reportOutput = $report->getReport($job)->getOutput();
+        $this->assertEquals('total', trim($reportOutput[0]));
     }
 }
