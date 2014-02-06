@@ -10,6 +10,9 @@
 
 namespace Cron\Report;
 
+use Cron\Job\AbstractJob;
+use Cron\Job\JobInterface;
+
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
@@ -30,6 +33,22 @@ class CronReport implements ReportInterface
 
     public function addJobReport(JobReport $report)
     {
+        $this->taskReports[] = $report;
+    }
 
+    public function getReports()
+    {
+        return $this->taskReports;
+    }
+
+    public function getReport(JobInterface $job)
+    {
+        foreach ($this->taskReports as $report) {
+            if ($report->getJob() == $job) {
+                return $report;
+            }
+        }
+
+        return null;
     }
 }

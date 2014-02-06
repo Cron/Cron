@@ -11,6 +11,7 @@
 namespace Cron;
 
 use Cron\Executor\ExecutorInterface;
+use Cron\Report\CronReport;
 use Cron\Resolver\ResolverInterface;
 use Cron\Report\ReportInterface;
 
@@ -30,7 +31,7 @@ class Cron
     private $executor;
 
     /**
-     * @return ReportInterface[]
+     * @return CronReport
      */
     public function run()
     {
@@ -67,5 +68,10 @@ class Cron
     public function getExecutor()
     {
         return $this->executor;
+    }
+
+    public function isRunning()
+    {
+        return $this->executor->isRunning();
     }
 }

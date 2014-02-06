@@ -48,7 +48,7 @@ class Executor implements ExecutorInterface
             if ($job->getProcess()) {
                 $set = new ExecutorSet();
                 $set->setJob($job);
-                $set->setReport(new JobReport());
+                $set->setReport($job->createReport());
                 $this->sets[] = $set;
             }
         }
@@ -60,5 +60,16 @@ class Executor implements ExecutorInterface
             $report->addJobReport($set->getReport());
             $set->run();
         }
+    }
+
+    public function isRunning()
+    {
+        foreach ($this->sets as $set) {
+            if ($set->getProcess()->isRunning()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -77,7 +77,7 @@ class ExecutorSet
             if (Process::ERR === $type) {
                 $report->addError($buffer);
             } else {
-                $report->addOut($buffer);
+                $report->addOutput($buffer);
             }
         });
     }

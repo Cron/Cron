@@ -68,10 +68,10 @@ class CronTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->cron->run());
     }
 
-    public function exampleTest()
+    public function testExample()
     {
         $job = new \Cron\Job\ShellJob();
-        $job->setCommand('ls -la >> crontest.log');
+        $job->setCommand('echo "total"');
         $job->setSchedule(new \Cron\Schedule\CrontabSchedule('* * * * *'));
 
         $resolver = new \Cron\Resolver\ArrayResolver();
@@ -81,6 +81,12 @@ class CronTest extends \PHPUnit_Framework_TestCase
         $cron->setExecutor(new \Cron\Executor\Executor());
         $cron->setResolver($resolver);
 
-        $cron->run();
+        $report = $cron->run();
+
+        $this->assertInstanceOf('\Cron\Report\ReportInterface', $report);
+
+        while($cron->isRunning()) {}
+
+        $this->assertEquals('total', trim($report->getReport($job)->getOutput()[0]));
     }
 }

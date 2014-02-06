@@ -10,11 +10,25 @@
 
 namespace Cron\Report;
 
+use Cron\Job\JobInterface;
+
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class JobReport implements ReportInterface
 {
+    protected $job;
+    protected $error = array();
+    protected $output = array();
+
+    /**
+     * @param JobInterface $job
+     */
+    public function __construct(JobInterface $job)
+    {
+        $this->job = $job;
+    }
+
     /**
      * @return bool
      */
@@ -23,13 +37,43 @@ class JobReport implements ReportInterface
 
     }
 
+    /**
+     * @param string $line
+     */
     public function addError($line)
     {
-
+        $this->error[] = $line;
     }
 
-    public function addOut($line)
+    /**
+     * @param string $line
+     */
+    public function addOutput($line)
     {
+        $this->output[] = $line;
+    }
 
+    /**
+     * @return JobInterface
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * @return array
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOutput()
+    {
+        return $this->output;
     }
 }

@@ -10,6 +10,7 @@
 
 namespace Cron\Job;
 
+use Cron\Report\JobReport;
 use Cron\Schedule\ScheduleInterface;
 use Symfony\Component\Process\Process;
 
@@ -54,4 +55,11 @@ abstract class AbstractJob implements JobInterface
         return !$this->schedule || $this->schedule->valid($this->getLastRun(), $now);
     }
 
+    /**
+     * @return JobReport
+     */
+    public function createReport()
+    {
+        return new JobReport($this);
+    }
 }

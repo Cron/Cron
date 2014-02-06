@@ -11,6 +11,7 @@
 namespace Cron\Job;
 
 use Cron\Schedule\ScheduleInterface;
+use Cron\Report\JobReport;
 use Symfony\Component\Process\Process;
 
 /**
@@ -40,4 +41,9 @@ interface JobInterface
      * @return Process
      */
     public function getProcess();
+
+    /**
+     * @return JobReport
+     */
+    public function createReport();
 }
