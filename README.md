@@ -5,22 +5,49 @@ Cron
  [![Build Status](https://secure.travis-ci.org/NoUseFreak/Cron.png)](https://travis-ci.org/NoUseFreak/Cron)
  [![Total Downloads](https://poser.pugx.org/cron/cron/downloads.png)](https://packagist.org/packages/cron/cron)
 
-Cron enables you to schedule tasks. Cron will search those that need execution and run them. 
+This library enables you to have only one general crontab entry that will trigger several different cronjobs that can be
+defined through this library. The Cron library will decide if the job needs to run or not.
 
-Usage
------
+**Attention**: make sure you set the server crontab job to a correctly chosen frequency because if there is for example
+a cronjob defined in code to run every minute, your general crontab job needs to run at least every minute as well to
+work properly.
+
+Use Case
+--------
+
+Say you need two cronjobs in your application. One that will write the contents of a folder to a log file, and one that
+will empty the folder. This library enables you to create a new route (for example: www.example.com/cron.php) where you notify
+the Cron library of the two cronjobs. After defining the Jobs with their specifics, they can be added to the resolver and
+the run command can be given.
+
+Your server crontab could now look something like:
+```
+*/1 * * * * /path/to/php /path/to/cron.php >/dev/null 2>&1
+```
+
+The code example below is matched to this use case.
+
+Code example
+------------
 
 ```php
 <?php
 
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$job = new \Cron\Job\ShellJob();
-$job->setCommand('ls -la >> crontest.log');
-$job->setSchedule(new \Cron\Schedule\CrontabSchedule('* * * * *'));
+// Write folder content to log every five minutes.
+$job1 = new \Cron\Job\ShellJob();
+$job1->setCommand('ls -la /path/to/folder >> crontest.log');
+$job1->setSchedule(new \Cron\Schedule\CrontabSchedule('*/5 * * * *'));
+
+// Remove folder contents every hour.
+$job2 = new \Cron\Job\ShellJob();
+$job2->setCommand('rm -rf /path/to/folder/*');
+$job2->setSchedule(new \Cron\Schedule\CrontabSchedule('0 0 * * *'));
 
 $resolver = new \Cron\Resolver\ArrayResolver();
-$resolver->addJob($job);
+$resolver->addJob($job1);
+$resolver->addJob($job2);
 
 $cron = new \Cron\Cron();
 $cron->setExecutor(new \Cron\Executor\Executor());
@@ -29,8 +56,8 @@ $cron->setResolver($resolver);
 $cron->run();
 ```
 
-Installing
-----------
+Installation
+------------
 
 Add the following to your project's composer.json:
 
@@ -73,7 +100,7 @@ Contributing
 > which we borrowed from Symfony.
 > Make sure to check out [php-cs-fixer](https://github.com/fabpot/PHP-CS-Fixer) as this will help you a lot.
 
-If you would like to help take a look at the [list of issues](http://github.com/NoUseFreak/Cron/issues).
+If you would like to help, take a look at the [list of issues](http://github.com/NoUseFreak/Cron/issues).
 
 Requirements
 ------------
