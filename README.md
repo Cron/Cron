@@ -16,13 +16,13 @@ Use Case
 --------
 
 Say you need two cronjobs in your application. One that will write the contents of a folder to a log file, and one that
-will empty the folder. This library enables you to create a new route (for example: www.example.com/cron) where you notify
+will empty the folder. This library enables you to create a new route (for example: www.example.com/cron.php) where you notify
 the Cron library of the two cronjobs. After defining the Jobs with their specifics, they can be added to the resolver and
 the run command can be given.
 
 Your server crontab could now look something like:
 ```
-*/1 * * * * wget -O - http://www.example.com/cron >/dev/null 2>&1
+*/1 * * * * /path/to/php /path/to/cron.php >/dev/null 2>&1
 ```
 
 The code example below is matched to this use case.
