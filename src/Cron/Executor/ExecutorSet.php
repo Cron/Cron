@@ -47,14 +47,6 @@ class ExecutorSet
     }
 
     /**
-     * @return Process
-     */
-    public function getProcess()
-    {
-        return $this->job->getProcess();
-    }
-
-    /**
      * @param ReportInterface $report
      */
     public function setReport($report)
@@ -72,13 +64,6 @@ class ExecutorSet
 
     public function run()
     {
-        $report = $this->getReport();
-        $this->getProcess()->start(function ($type, $buffer) use ($report) {
-            if (Process::ERR === $type) {
-                $report->addError($buffer);
-            } else {
-                $report->addOutput($buffer);
-            }
-        });
+        $this->job->run($this->getReport());
     }
 }

@@ -48,16 +48,8 @@ class CrontabSchedule implements ScheduleInterface
      * @param  \DateTime $now
      * @return bool
      */
-    public function valid(\DateTime $lastRun, \DateTime $now)
+    public function valid(\DateTime $now)
     {
-        if ($lastRun > $now) {
-            return false;
-        }
-        // Anything older than a year should be run
-        if ($lastRun <= new \DateTime('1 year ago')) {
-            return true;
-        }
-
         if (false === $this->checkMinute($now)) {
             return false;
         }

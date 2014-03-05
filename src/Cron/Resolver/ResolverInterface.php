@@ -18,6 +18,8 @@ use Cron\Job\JobInterface;
 interface ResolverInterface
 {
     /**
+     * Return all available jobs.
+     *
      * @return JobInterface[]
      */
     public function resolve();

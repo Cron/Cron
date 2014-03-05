@@ -25,11 +25,6 @@ abstract class AbstractJob implements JobInterface
     protected $schedule;
 
     /**
-     * @var Process
-     */
-    protected $process;
-
-    /**
      * {@inheritDocs}
      */
     public function setSchedule(ScheduleInterface $schedule)
@@ -45,14 +40,9 @@ abstract class AbstractJob implements JobInterface
         return $this->schedule;
     }
 
-    public function getLastRun()
-    {
-        return new \DateTime('2 weeks ago');
-    }
-
     public function valid(\DateTime $now)
     {
-        return !$this->schedule || $this->schedule->valid($this->getLastRun(), $now);
+        return !$this->schedule || $this->schedule->valid($now);
     }
 
     /**

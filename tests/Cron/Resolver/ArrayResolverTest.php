@@ -56,8 +56,12 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
 
         $validJob = new ShellJob();
         $validJob->setSchedule(new CrontabSchedule('* * * * *'));
+        $validJob->setCommand('ls -la');
 
         $noScheduleJob = new ShellJob();
+
+        $noCommandJob = new ShellJob();
+        $noCommandJob->setSchedule(new CrontabSchedule('* * * * *'));
 
         $invalidJob = new ShellJob();
         $invalidJob->setSchedule(new CrontabSchedule('* * * * ' . $badDow));
@@ -65,11 +69,15 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
         return array(
             array(array(), array()),
             array(array($validJob), array($validJob)),
-            array(array($noScheduleJob), array($noScheduleJob)),
-            array(array($validJob, $noScheduleJob), array($validJob, $noScheduleJob)),
+            array(array($noScheduleJob), array()),
+            array(array($validJob, $noScheduleJob), array($validJob)),
+            array(array($noCommandJob), array()),
+            array(array($noCommandJob, $noScheduleJob), array()),
+            array(array($noCommandJob, $validJob, $noScheduleJob), array($validJob)),
             array(array($invalidJob), array()),
             array(array($invalidJob, $validJob), array($validJob)),
-            array(array($invalidJob, $validJob, $noScheduleJob), array($validJob, $noScheduleJob)),
+            array(array($invalidJob, $validJob, $noCommandJob), array($validJob)),
+            array(array($invalidJob, $validJob, $noCommandJob, $noScheduleJob), array($validJob)),
         );
     }
 

@@ -16,9 +16,8 @@ namespace Cron\Schedule;
 interface ScheduleInterface
 {
     /**
-     * @param  \DateTime $lastRun
      * @param  \DateTime $now
      * @return bool
      */
-    public function valid(\DateTime $lastRun, \DateTime $now);
+    public function valid(\DateTime $now);
 }

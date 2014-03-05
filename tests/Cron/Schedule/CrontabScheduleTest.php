@@ -100,10 +100,10 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider validTrueProvider
      */
-    public function testValidTrue($pattern, $lastRun, $now)
+    public function testValidTrue($pattern, $now)
     {
         $this->schedule->setPattern($pattern);
-        $this->assertTrue($this->schedule->valid($lastRun, $now));
+        $this->assertTrue($this->schedule->valid($now));
     }
 
     public function validTrueProvider()
@@ -116,13 +116,12 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $month = $now->format('n');
             $dow = $now->format('w');
 
-            $data[] = array('* * * * *', new \DateTime('2 years ago'), $now);
-            $data[] = array('* * * * *', new \DateTime('2 week ago'), $now);
-            $data[] = array($min . ' * * * *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* ' . $hour . ' * * *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* * ' . $day . ' * *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* * * ' . $month . ' *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* * * * ' . $dow, new \DateTime('2 week ago'), $now);
+            $data[] = array('* * * * *', $now);
+            $data[] = array($min . ' * * * *',  $now);
+            $data[] = array('* ' . $hour . ' * * *', $now);
+            $data[] = array('* * ' . $day . ' * *', $now);
+            $data[] = array('* * * ' . $month . ' *', $now);
+            $data[] = array('* * * * ' . $dow, $now);
         }
 
         return $data;
@@ -131,10 +130,10 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider validFalseProvider
      */
-    public function testValidFalse($pattern, $lastRun, $now)
+    public function testValidFalse($pattern, $now)
     {
         $this->schedule->setPattern($pattern);
-        $this->assertFalse($this->schedule->valid($lastRun, $now));
+        $this->assertFalse($this->schedule->valid($now));
     }
 
     public function validFalseProvider()
@@ -152,12 +151,11 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $dow = (int)$now->format('w');
             $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
-            $data[] = array('* * * * *', new \DateTime('+8 days'), $now);
-            $data[] = array($badMin . ' * * * *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* ' . $badHour . ' * * *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* * ' . $badDay . ' * *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* * * ' . $badMonth . ' *', new \DateTime('2 week ago'), $now);
-            $data[] = array('* * * * ' . $badDow, new \DateTime('2 week ago'), $now);
+            $data[] = array($badMin . ' * * * *', $now);
+            $data[] = array('* ' . $badHour . ' * * *', $now);
+            $data[] = array('* * ' . $badDay . ' * *', $now);
+            $data[] = array('* * * ' . $badMonth . ' *', $now);
+            $data[] = array('* * * * ' . $badDow, $now);
         }
 
         return $data;

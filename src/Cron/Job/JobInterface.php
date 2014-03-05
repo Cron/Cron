@@ -10,6 +10,7 @@
 
 namespace Cron\Job;
 
+use Cron\Report\ReportInterface;
 use Cron\Schedule\ScheduleInterface;
 use Cron\Report\JobReport;
 use Symfony\Component\Process\Process;
@@ -38,12 +39,17 @@ interface JobInterface
     public function valid(\DateTime $now);
 
     /**
-     * @return Process
-     */
-    public function getProcess();
-
-    /**
      * @return JobReport
      */
     public function createReport();
+
+    /**
+     * @param JobReport $report
+     */
+    public function run(JobReport $report);
+
+    /**
+     * @return bool
+     */
+    public function isRunning();
 }

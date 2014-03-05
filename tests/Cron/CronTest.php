@@ -90,4 +90,25 @@ class CronTest extends \PHPUnit_Framework_TestCase
         $reportOutput = $report->getReport($job)->getOutput();
         $this->assertEquals('total', trim($reportOutput[0]));
     }
+
+    public function testNewExample()
+    {
+        $job1 = new \Cron\Job\ShellJob();
+        $job1->setCommand('ls -la');
+        $job1->setSchedule(new \Cron\Schedule\CrontabSchedule('*/5 * * * *'));
+
+        $job2 = new \Cron\Job\ShellJob();
+        $job2->setCommand('ls -la');
+        $job2->setSchedule(new \Cron\Schedule\CrontabSchedule('0 0 * * *'));
+
+        $resolver = new \Cron\Resolver\ArrayResolver();
+        $resolver->addJob($job1);
+        $resolver->addJob($job2);
+
+        $cron = new \Cron\Cron();
+        $cron->setExecutor(new \Cron\Executor\Executor());
+        $cron->setResolver($resolver);
+
+        $cron->run();
+    }
 }

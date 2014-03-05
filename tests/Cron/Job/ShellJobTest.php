@@ -11,6 +11,7 @@
 namespace Cron\Job;
 
 use Cron\Job\ShellJob;
+use Cron\Report\JobReport;
 use Cron\Schedule\CrontabSchedule;
 
 /**
@@ -39,5 +40,23 @@ class ShellJobTest extends \PHPUnit_Framework_TestCase
         $this->shellJob->setSchedule($schedule);
 
         $this->assertEquals($schedule, $this->shellJob->getSchedule());
+    }
+
+    public function testRunning()
+    {
+        $scheduleMock = $this->getMock('\\Cron\\Schedule\\CrontabSchedule');
+        $scheduleMock
+            ->expects($this->exactly(2))
+            ->method('valid')
+            ->will($this->returnValue(true));
+
+        $this->shellJob->setSchedule($scheduleMock);
+        $this->shellJob->setCommand('sleep 10');
+
+        $this->assertTrue($this->shellJob->valid(new \DateTime()));
+        $this->shellJob->run(new JobReport($this->shellJob));
+        $this->assertTrue($this->shellJob->isRunning());
+        $this->assertFalse($this->shellJob->valid(new \DateTime()));
+
     }
 }

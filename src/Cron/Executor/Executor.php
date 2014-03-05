@@ -45,7 +45,7 @@ class Executor implements ExecutorInterface
     protected function prepareSets(array $jobs)
     {
         foreach ($jobs as $job) {
-            if ($job->getProcess()) {
+            if ($job->valid(new \DateTime())) {
                 $set = new ExecutorSet();
                 $set->setJob($job);
                 $set->setReport($job->createReport());
@@ -65,7 +65,7 @@ class Executor implements ExecutorInterface
     public function isRunning()
     {
         foreach ($this->sets as $set) {
-            if ($set->getProcess()->isRunning()) {
+            if ($set->getJob()->isRunning()) {
                 return true;
             }
         }
