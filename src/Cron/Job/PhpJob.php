@@ -10,17 +10,15 @@
 
 namespace Cron\Job;
 
-use Cron\Report\JobReport;
-use Cron\Report\ReportInterface;
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\PhpProcess;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ShellJob extends AbstractProcessJob
+class PhpJob extends AbstractProcessJob
 {
-    public function setCommand($command)
+    public function setScript($script)
     {
-        $this->process = new Process($command);
+        $this->process = new PhpProcess($script);
     }
 }
