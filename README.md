@@ -16,13 +16,13 @@ Use Case
 --------
 
 Say you need two cronjobs in your application. One that will write the contents of a folder to a log file, and one that
-will empty the folder. This library enables you to create a new route (for example: www.example.com/cron.php) where you notify
+will empty the folder. This library enables you to create separate scripts (for example: cron.php) where you notify
 the Cron library of the two cronjobs. After defining the Jobs with their specifics, they can be added to the resolver and
 the run command can be given.
 
 Your server crontab could now look something like:
 ```
-*/1 * * * * /path/to/php /path/to/cron.php >/dev/null 2>&1
+* * * * * /path/to/php /path/to/cron.php >/dev/null 2>&1
 ```
 
 The code example below is matched to this use case.
@@ -37,7 +37,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 // Write folder content to log every five minutes.
 $job1 = new \Cron\Job\ShellJob();
-$job1->setCommand('ls -la /path/to/folder >> crontest.log');
+$job1->setCommand('ls -la /path/to/folder');
 $job1->setSchedule(new \Cron\Schedule\CrontabSchedule('*/5 * * * *'));
 
 // Remove folder contents every hour.
@@ -54,6 +54,15 @@ $cron->setExecutor(new \Cron\Executor\Executor());
 $cron->setResolver($resolver);
 
 $cron->run();
+```
+
+Cron currently only support triggering shell commands. This means you can trigger anything although it is highly encouraged
+not to call web urls. But if you really need to here are some example commands.
+
+```
+* * * * * /usr/bin/lynx -source http://example.com/cron.php
+* * * * * /usr/bin/wget -O - -q -t 1 http://www.example.com/cron.php
+* * * * * curl -s http://example.com/cron.php
 ```
 
 Installation
