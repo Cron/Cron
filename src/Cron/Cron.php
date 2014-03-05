@@ -70,6 +70,9 @@ class Cron
         return $this->executor;
     }
 
+    /**
+     * @return bool
+     */
     public function isRunning()
     {
         return $this->executor->isRunning();

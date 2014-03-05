@@ -44,7 +44,6 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Validate if this pattern can run on the given date.
      *
-     * @param  \DateTime $lastRun
      * @param  \DateTime $now
      * @return bool
      */
@@ -69,6 +68,12 @@ class CrontabSchedule implements ScheduleInterface
         return true;
     }
 
+    /**
+     * Check if the minute matches.
+     *
+     * @param \DateTime $now
+     * @return bool|null
+     */
     protected function checkMinute(\DateTime $now)
     {
         if ($this->parts['min'] != '*') {
@@ -84,6 +89,12 @@ class CrontabSchedule implements ScheduleInterface
         return null;
     }
 
+    /**
+     * Check if the hour matches.
+     *
+     * @param \DateTime $now
+     * @return bool|null
+     */
     protected function checkHour(\DateTime $now)
     {
         if ($this->parts['hour'] != '*') {
@@ -99,6 +110,12 @@ class CrontabSchedule implements ScheduleInterface
         return null;
     }
 
+    /**
+     * Check if the day matches.
+     *
+     * @param \DateTime $now
+     * @return bool|null
+     */
     protected function checkDay(\DateTime $now)
     {
         if ($this->parts['day'] != '*') {
@@ -114,6 +131,12 @@ class CrontabSchedule implements ScheduleInterface
         return null;
     }
 
+    /**
+     * Check if the month matches.
+     *
+     * @param \DateTime $now
+     * @return bool|null
+     */
     protected function checkMonth(\DateTime $now)
     {
         if ($this->parts['month'] != '*') {
@@ -130,6 +153,8 @@ class CrontabSchedule implements ScheduleInterface
     }
 
     /**
+     * Check if the day of the week matches.
+     *
      * @param  \DateTime $now
      * @return bool|null
      */
@@ -201,6 +226,12 @@ class CrontabSchedule implements ScheduleInterface
         return array_intersect_key($matches, $parts);
     }
 
+    /**
+     * Translate known shorthands to basic cron syntax.
+     *
+     * @param $pattern
+     * @return string
+     */
     protected function findReplacements($pattern)
     {
         if (0 === strpos($pattern, '@')) {

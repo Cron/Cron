@@ -11,7 +11,6 @@
 namespace Cron\Job;
 
 use Cron\Report\JobReport;
-use Cron\Report\ReportInterface;
 use Symfony\Component\Process\Process;
 
 /**
@@ -20,10 +19,17 @@ use Symfony\Component\Process\Process;
 abstract class AbstractProcessJob extends AbstractJob
 {
     /**
+     * The symfony process instance.
+     *
      * @var Process
      */
     protected $process;
 
+    /**
+     * The process id.
+     *
+     * @var int
+     */
     protected $pid;
 
     public function getProcess()
@@ -39,6 +45,11 @@ abstract class AbstractProcessJob extends AbstractJob
         $this->pid = $pid;
     }
 
+    /**
+     * Start the process.
+     *
+     * @param JobReport $report
+     */
     public function run(JobReport $report)
     {
         $this->getProcess()->start(function ($type, $buffer) use ($report) {
@@ -50,11 +61,24 @@ abstract class AbstractProcessJob extends AbstractJob
         });
     }
 
+    /**
+     * Validate the job.
+     *
+     * Will check if we have a process and make sure it isn't already running.
+     *
+     * @param \DateTime $now
+     * @return bool
+     */
     public function valid(\DateTime $now)
     {
         return parent::valid($now) && $this->getProcess() && !$this->isRunning();
     }
 
+    /**
+     * Validate if the process is running.
+     *
+     * @return bool
+     */
     public function isRunning()
     {
         if (is_null($this->pid)) {

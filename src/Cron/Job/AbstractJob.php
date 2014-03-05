@@ -12,7 +12,6 @@ namespace Cron\Job;
 
 use Cron\Report\JobReport;
 use Cron\Schedule\ScheduleInterface;
-use Symfony\Component\Process\Process;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
@@ -40,6 +39,12 @@ abstract class AbstractJob implements JobInterface
         return $this->schedule;
     }
 
+    /**
+     * Validate the job.
+     *
+     * @param \DateTime $now
+     * @return bool
+     */
     public function valid(\DateTime $now)
     {
         return !$this->schedule || $this->schedule->valid($now);

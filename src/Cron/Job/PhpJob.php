@@ -17,6 +17,11 @@ use Symfony\Component\Process\PhpProcess;
  */
 class PhpJob extends AbstractProcessJob
 {
+    /**
+     * Set the script to execute. This is a php script in the form of a string.
+     *
+     * @param string $script
+     */
     public function setScript($script)
     {
         $this->process = new PhpProcess($script);

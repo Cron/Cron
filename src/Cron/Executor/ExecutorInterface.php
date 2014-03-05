@@ -19,8 +19,17 @@ use Cron\Report\ReportInterface;
 interface ExecutorInterface
 {
     /**
+     * Execute the jobs.
+     *
      * @param  JobInterface[]    $jobs
      * @return ReportInterface[]
      */
     public function execute(array $jobs);
+
+    /**
+     * Check if a job is running.
+     *
+     * @return bool
+     */
+    public function isRunning();
 }

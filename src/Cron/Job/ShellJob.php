@@ -10,8 +10,6 @@
 
 namespace Cron\Job;
 
-use Cron\Report\JobReport;
-use Cron\Report\ReportInterface;
 use Symfony\Component\Process\Process;
 
 /**
@@ -19,6 +17,11 @@ use Symfony\Component\Process\Process;
  */
 class ShellJob extends AbstractProcessJob
 {
+    /**
+     * Set the command to execute as if you would run it in the shell.
+     *
+     * @param string $command
+     */
     public function setCommand($command)
     {
         $this->process = new Process($command);
