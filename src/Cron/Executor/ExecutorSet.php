@@ -13,7 +13,6 @@ namespace Cron\Executor;
 use Cron\Job\JobInterface;
 use Cron\Report\ReportInterface;
 use Cron\Report\JobReport;
-use Symfony\Component\Process\Process;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>

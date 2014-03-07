@@ -10,7 +10,6 @@
 
 namespace Cron\Report;
 
-use Cron\Job\AbstractJob;
 use Cron\Job\JobInterface;
 
 /**

@@ -10,10 +10,8 @@
 
 namespace Cron\Job;
 
-use Cron\Report\ReportInterface;
 use Cron\Schedule\ScheduleInterface;
 use Cron\Report\JobReport;
-use Symfony\Component\Process\Process;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>

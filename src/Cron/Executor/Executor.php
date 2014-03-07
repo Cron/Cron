@@ -12,7 +12,6 @@ namespace Cron\Executor;
 
 use Cron\Report\CronReport;
 use Cron\Job\JobInterface;
-use Cron\Report\JobReport;
 use Cron\Report\ReportInterface;
 
 /**
