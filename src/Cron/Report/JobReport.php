@@ -20,6 +20,8 @@ class JobReport implements ReportInterface
     protected $job;
     protected $error = array();
     protected $output = array();
+    protected $startTime;
+    protected $endTime;
 
     /**
      * @param JobInterface $job
@@ -75,5 +77,37 @@ class JobReport implements ReportInterface
     public function getOutput()
     {
         return $this->output;
+    }
+
+    /**
+     * @param float $endTime
+     */
+    public function setEndTime($endTime)
+    {
+        $this->endTime = $endTime;
+    }
+
+    /**
+     * @return float
+     */
+    public function getEndTime()
+    {
+        return $this->endTime;
+    }
+
+    /**
+     * @param float $startTime
+     */
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+    }
+
+    /**
+     * @return float
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
     }
 }

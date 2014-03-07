@@ -26,6 +26,11 @@ abstract class AbstractProcessJob extends AbstractJob
     protected $process;
 
     /**
+     * @var JobReport
+     */
+    protected $report;
+
+    /**
      * The process id.
      *
      * @var int
@@ -52,6 +57,8 @@ abstract class AbstractProcessJob extends AbstractJob
      */
     public function run(JobReport $report)
     {
+        $this->report = $report;
+        $report->setStartTime(microtime(true));
         $this->getProcess()->start(function ($type, $buffer) use ($report) {
             if (Process::ERR === $type) {
                 $report->addError($buffer);
@@ -81,11 +88,29 @@ abstract class AbstractProcessJob extends AbstractJob
      */
     public function isRunning()
     {
+        $running = $this->isProcessRunning();
+
+        if (!$running && $this->getProcess()->isStarted()) {
+            $this->registerEnd();
+        }
+
+        return $running;
+    }
+
+    protected function isProcessRunning()
+    {
         if (is_null($this->pid)) {
             return $this->getProcess()->isRunning();
         }
 
         return (bool)posix_getpgid($this->pid);
+    }
+
+    protected function registerEnd()
+    {
+        if (is_null($this->report->getEndTime())) {
+            $this->report->setEndTime(microtime(true));
+        }
     }
 
 }
