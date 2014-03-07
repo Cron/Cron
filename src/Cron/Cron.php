@@ -13,7 +13,6 @@ namespace Cron;
 use Cron\Executor\ExecutorInterface;
 use Cron\Report\CronReport;
 use Cron\Resolver\ResolverInterface;
-use Cron\Report\ReportInterface;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
