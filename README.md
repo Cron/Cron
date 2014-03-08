@@ -2,7 +2,7 @@ Cron
 ====
  [![Latest Stable Version](https://poser.pugx.org/cron/cron/v/stable.png)](https://packagist.org/packages/cron/cron)
  [![Latest Unstable Version](https://poser.pugx.org/cron/cron/v/unstable.png)](//packagist.org/packages/cron/cron)
- [![Build Status](https://secure.travis-ci.org/NoUseFreak/Cron.png)](https://travis-ci.org/NoUseFreak/Cron)
+ [![Build Status](https://travis-ci.org/Cron/Cron.png?branch=master)](https://travis-ci.org/Cron/Cron)
  [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101/mini.png)](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101)
  [![Total Downloads](https://poser.pugx.org/cron/cron/downloads.png)](https://packagist.org/packages/cron/cron)
 
