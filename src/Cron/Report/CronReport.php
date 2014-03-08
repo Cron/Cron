@@ -20,7 +20,7 @@ class CronReport implements ReportInterface
     /**
      * @var JobReport[]
      */
-    protected $taskReports;
+    protected $taskReports = array();
 
     /**
      * @return bool
