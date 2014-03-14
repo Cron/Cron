@@ -32,7 +32,7 @@ class JobReport implements ReportInterface
     }
 
     /**
-     * @return bool
+     * @return boolean|null
      */
     public function isSuccessful()
     {
@@ -64,7 +64,7 @@ class JobReport implements ReportInterface
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getError()
     {
@@ -72,7 +72,7 @@ class JobReport implements ReportInterface
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getOutput()
     {

@@ -11,7 +11,6 @@
 namespace Cron;
 
 use Cron\Executor\ExecutorInterface;
-use Cron\Report\CronReport;
 use Cron\Resolver\ResolverInterface;
 
 /**
@@ -30,7 +29,7 @@ class Cron
     private $executor;
 
     /**
-     * @return CronReport
+     * @return Report\ReportInterface[]
      */
     public function run()
     {

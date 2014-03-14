@@ -23,7 +23,7 @@ class CronReport implements ReportInterface
     protected $taskReports = array();
 
     /**
-     * @return bool
+     * @return boolean|null
      */
     public function isSuccessful()
     {

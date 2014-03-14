@@ -194,8 +194,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Parse the pattern into a rule for every property.
      *
-     * @param $pattern
-     * @return array
+     * @param string $pattern
+     * @return string[]
      * @throws \InvalidArgumentException
      */
     protected function parsePattern($pattern)
