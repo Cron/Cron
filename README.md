@@ -5,6 +5,7 @@ Cron
  [![Build Status](https://travis-ci.org/Cron/Cron.png?branch=master)](https://travis-ci.org/Cron/Cron)
  [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101/mini.png)](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101)
  [![Total Downloads](https://poser.pugx.org/cron/cron/downloads.png)](https://packagist.org/packages/cron/cron)
+ [![Dependency Status](https://www.versioneye.com/user/projects/53237856ec137572640000df/badge.png)](https://www.versioneye.com/user/projects/53237856ec137572640000df)
 
 This library enables you to have only one general crontab entry that will trigger several different cronjobs that can be
 defined through this library. The Cron library will decide if the job needs to run or not.
