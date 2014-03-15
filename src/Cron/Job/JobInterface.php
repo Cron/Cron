@@ -21,7 +21,7 @@ interface JobInterface
     /**
      * Set the task schedule.
      *
-     * @param ScheduleInterface $schedule
+     * @param  ScheduleInterface $schedule
      * @return void
      */
     public function setSchedule(ScheduleInterface $schedule);

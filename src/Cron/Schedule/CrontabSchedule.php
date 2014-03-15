@@ -71,7 +71,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the minute matches.
      *
-     * @param \DateTime $now
+     * @param  \DateTime $now
      * @return bool|null
      */
     protected function checkMinute(\DateTime $now)
@@ -92,7 +92,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the hour matches.
      *
-     * @param \DateTime $now
+     * @param  \DateTime $now
      * @return bool|null
      */
     protected function checkHour(\DateTime $now)
@@ -113,7 +113,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the day matches.
      *
-     * @param \DateTime $now
+     * @param  \DateTime $now
      * @return bool|null
      */
     protected function checkDay(\DateTime $now)
@@ -134,7 +134,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the month matches.
      *
-     * @param \DateTime $now
+     * @param  \DateTime $now
      * @return bool|null
      */
     protected function checkMonth(\DateTime $now)
@@ -194,7 +194,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Parse the pattern into a rule for every property.
      *
-     * @param string $pattern
+     * @param  string                    $pattern
      * @return string[]
      * @throws \InvalidArgumentException
      */
@@ -215,9 +215,9 @@ class CrontabSchedule implements ScheduleInterface
             $regex[$name] = '(?P<' . $name . '>(\*(\/\d+)?|' . $range . '(,' . $range . ')*))';
         }
         $range = '(' . $parts['year'] . ')(-(' . $parts['year'] . '))?';
-        $regex_year = '( (?P<year>(\*(\/\d+)?|' . $range . '(,' . $range . ')*)))?';
+        $regexYear = '( (?P<year>(\*(\/\d+)?|' . $range . '(,' . $range . ')*)))?';
 
-        $regex = '/^' . implode('([\s\t]+)', $regex) . $regex_year . '$/';
+        $regex = '/^' . implode('([\s\t]+)', $regex) . $regexYear . '$/';
 
         if (!preg_match($regex, $this->findReplacements($pattern), $matches)) {
             throw new \InvalidArgumentException;
@@ -229,7 +229,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Translate known shorthands to basic cron syntax.
      *
-     * @param string $pattern
+     * @param  string $pattern
      * @return string
      */
     protected function findReplacements($pattern)

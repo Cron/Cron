@@ -73,7 +73,7 @@ abstract class AbstractProcessJob extends AbstractJob
      *
      * Will check if we have a process and make sure it isn't already running.
      *
-     * @param \DateTime $now
+     * @param  \DateTime $now
      * @return bool
      */
     public function valid(\DateTime $now)
@@ -103,7 +103,7 @@ abstract class AbstractProcessJob extends AbstractJob
             return $this->getProcess()->isRunning();
         }
 
-        return (bool)posix_getpgid($this->pid);
+        return (bool) posix_getpgid($this->pid);
     }
 
     protected function registerEnd()

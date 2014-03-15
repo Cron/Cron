@@ -42,7 +42,7 @@ abstract class AbstractJob implements JobInterface
     /**
      * Validate the job.
      *
-     * @param \DateTime $now
+     * @param  \DateTime $now
      * @return bool
      */
     public function valid(\DateTime $now)
