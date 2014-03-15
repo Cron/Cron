@@ -229,7 +229,7 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Translate known shorthands to basic cron syntax.
      *
-     * @param $pattern
+     * @param string $pattern
      * @return string
      */
     protected function findReplacements($pattern)
