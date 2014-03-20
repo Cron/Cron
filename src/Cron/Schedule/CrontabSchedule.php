@@ -234,18 +234,20 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function findReplacements($pattern)
     {
-        if (0 === strpos($pattern, '@')) {
-            $replace = array(
-                '@yearly'   => '0 0 1 1 * *',
-                '@annually' => '0 0 1 1 * *',
-                '@monthly'  => '0 0 1 * *',
-                '@weekly'   => '0 0 * * 0',
-                '@daily'    => '0 0 * * *',
-                '@hourly'   => '0 * * * *',
-            );
-            if (isset($replace[$pattern])) {
-                $pattern = $replace[$pattern];
-            }
+        if (0 !== strpos($pattern, '@')) {
+            return $pattern;
+        }
+
+        $replace = array(
+            '@yearly'   => '0 0 1 1 * *',
+            '@annually' => '0 0 1 1 * *',
+            '@monthly'  => '0 0 1 * *',
+            '@weekly'   => '0 0 * * 0',
+            '@daily'    => '0 0 * * *',
+            '@hourly'   => '0 * * * *',
+        );
+        if (isset($replace[$pattern])) {
+            $pattern = $replace[$pattern];
         }
 
         return $pattern;
