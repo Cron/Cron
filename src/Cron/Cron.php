@@ -10,6 +10,7 @@
 
 namespace Cron;
 
+use Cron\Executor\Executor;
 use Cron\Executor\ExecutorInterface;
 use Cron\Resolver\ResolverInterface;
 
@@ -65,6 +66,10 @@ class Cron
      */
     public function getExecutor()
     {
+        if (is_null($this->executor)) {
+            $this->executor = new Executor();
+        }
+
         return $this->executor;
     }
 

@@ -111,4 +111,9 @@ class CronTest extends \PHPUnit_Framework_TestCase
 
         $cron->run();
     }
+
+    public function testDefaultExecutor()
+    {
+        $this->assertInstanceOf('\Cron\Executor\Executor', $this->cron->getExecutor());
+    }
 }
