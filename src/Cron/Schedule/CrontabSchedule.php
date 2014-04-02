@@ -10,6 +10,9 @@
 
 namespace Cron\Schedule;
 
+use Cron\Validator\CrontabValidator;
+use Cron\Validator\ValidatorInterface;
+
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
@@ -32,10 +35,17 @@ class CrontabSchedule implements ScheduleInterface
     private $parts;
 
     /**
+     * @var CrontabValidator
+     */
+    private $validator;
+
+    /**
      * @param null $pattern
      */
     public function __construct($pattern = null)
     {
+        $this->validator = new CrontabValidator();
+
         if ($pattern) {
             $this->setPattern($pattern);
         }
@@ -179,6 +189,8 @@ class CrontabSchedule implements ScheduleInterface
      */
     public function setPattern($pattern)
     {
+        $pattern = $this->validator->validate($pattern);
+
         $this->parts = $this->parsePattern($pattern);
         $this->pattern = $pattern;
     }
@@ -218,39 +230,9 @@ class CrontabSchedule implements ScheduleInterface
         $regexYear = '( (?P<year>(\*(\/\d+)?|' . $range . '(,' . $range . ')*)))?';
 
         $regex = '/^' . implode('([\s\t]+)', $regex) . $regexYear . '$/';
-
-        if (!preg_match($regex, $this->findReplacements($pattern), $matches)) {
-            throw new \InvalidArgumentException;
-        }
+        preg_match($regex, $pattern, $matches);
 
         return array_intersect_key($matches, $parts);
-    }
-
-    /**
-     * Translate known shorthands to basic cron syntax.
-     *
-     * @param  string $pattern
-     * @return string
-     */
-    protected function findReplacements($pattern)
-    {
-        if (0 !== strpos($pattern, '@')) {
-            return $pattern;
-        }
-
-        $replace = array(
-            '@yearly'   => '0 0 1 1 * *',
-            '@annually' => '0 0 1 1 * *',
-            '@monthly'  => '0 0 1 * *',
-            '@weekly'   => '0 0 * * 0',
-            '@daily'    => '0 0 * * *',
-            '@hourly'   => '0 * * * *',
-        );
-        if (isset($replace[$pattern])) {
-            $pattern = $replace[$pattern];
-        }
-
-        return $pattern;
     }
 
     /**

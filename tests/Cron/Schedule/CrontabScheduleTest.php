@@ -68,7 +68,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidPatterns($pattern)
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->setExpectedException('\Cron\Exception\InvalidPatternException');
         $this->schedule->setPattern($pattern);
     }
 
