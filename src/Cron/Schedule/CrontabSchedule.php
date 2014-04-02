@@ -11,7 +11,6 @@
 namespace Cron\Schedule;
 
 use Cron\Validator\CrontabValidator;
-use Cron\Validator\ValidatorInterface;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>

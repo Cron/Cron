@@ -11,7 +11,6 @@
 namespace Cron\Validator;
 
 use Cron\Exception\InvalidPatternException;
-use Cron\Schedule\ScheduleInterface;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
