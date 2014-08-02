@@ -37,13 +37,16 @@ abstract class AbstractProcessJob extends AbstractJob
      */
     protected $pid;
 
+    /**
+     * @return Process
+     */
     public function getProcess()
     {
         return $this->process;
     }
 
     /**
-     * @param mixed $pid
+     * @param int $pid
      */
     public function setPid($pid)
     {
@@ -97,6 +100,9 @@ abstract class AbstractProcessJob extends AbstractJob
         return $running;
     }
 
+    /**
+     * @return bool
+     */
     protected function isProcessRunning()
     {
         if (is_null($this->pid)) {
@@ -106,6 +112,9 @@ abstract class AbstractProcessJob extends AbstractJob
         return (bool) posix_getpgid($this->pid);
     }
 
+    /**
+     * Register the end of a job to the report.
+     */
     protected function registerEnd()
     {
         if (is_null($this->report->getEndTime())) {
