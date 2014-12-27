@@ -87,7 +87,7 @@ class CrontabSchedule implements ScheduleInterface
     {
         if ($this->parts['min'] != '*') {
             foreach ($this->parseRule($this->parts['min'], 0, 59) as $value) {
-                if ($now->format('i') == $value || $now->format('s') == $value) {
+                if ($now->format('i') == $value) {
                     return true;
                 }
             }
@@ -150,7 +150,7 @@ class CrontabSchedule implements ScheduleInterface
     {
         if ($this->parts['month'] != '*') {
             foreach ($this->parseRule($this->parts['month'], 1, 12) as $value) {
-                if ($now->format('n') == $value || $now->format('M') == $value) {
+                if ($now->format('n') == $value || $now->format('m') == $value) {
                     return true;
                 }
             }

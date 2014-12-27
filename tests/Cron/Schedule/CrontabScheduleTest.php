@@ -209,4 +209,19 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
         $schedule = new CrontabSchedule($pattern);
         $this->assertEquals($pattern, $schedule->getPattern());
     }
+
+    /**
+     * Minutes validation broke validation of the seconds where at 0.
+     *
+     * @link https://github.com/Cron/Cron/issues/12
+     */
+    public function testBadSecondsValidation()
+    {
+        $this->schedule->setPattern('*/5 * * * *');
+
+        for ($i = 0; $i < 60; $i++) {
+            $now = new \DateTime('2014-12-27 13:11:' . $i);
+            $this->assertFalse($this->schedule->valid($now));
+        }
+    }
 }
