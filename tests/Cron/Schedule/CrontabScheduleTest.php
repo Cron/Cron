@@ -147,7 +147,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $day = (int)$now->format('d');
             $badDay = ($day - 1 < 1) ? ($day + 1) : ($day - 1);
             $month = (int)$now->format('n');
-            $badMonth = ($month - 1 < 0) ? ($month + 1) : ($month - 1);
+            $badMonth = ($month - 1 < 1) ? ($month + 1) : ($month - 1);
             $dow = (int)$now->format('w');
             $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
