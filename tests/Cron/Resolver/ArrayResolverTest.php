@@ -51,7 +51,7 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
     public function resolverProvider()
     {
         $now = new \DateTime();
-        $dow = (int)$now->format('w');
+        $dow = (int) $now->format('w');
         $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
         $validJob = new ShellJob();

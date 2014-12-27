@@ -11,7 +11,7 @@ namespace Cron\Exception;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
- */ 
+ */
 class InvalidPatternException extends \Exception
 {
 }

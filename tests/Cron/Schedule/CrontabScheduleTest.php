@@ -140,15 +140,15 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
     {
         $data = array();
         foreach ($this->dateProvider() as $now) {
-            $min = (int)$now->format('i');
+            $min = (int) $now->format('i');
             $badMin = ($min - 1 < 0) ? ($min + 1) : ($min - 1);
-            $hour = (int)$now->format('H');
+            $hour = (int) $now->format('H');
             $badHour = ($hour - 1 < 0) ? ($hour + 1) : ($hour - 1);
-            $day = (int)$now->format('d');
+            $day = (int) $now->format('d');
             $badDay = ($day - 1 < 1) ? ($day + 1) : ($day - 1);
-            $month = (int)$now->format('n');
+            $month = (int) $now->format('n');
             $badMonth = ($month - 1 < 1) ? ($month + 1) : ($month - 1);
-            $dow = (int)$now->format('w');
+            $dow = (int) $now->format('w');
             $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
             $data[] = array($badMin . ' * * * *', $now);

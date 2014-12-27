@@ -20,7 +20,7 @@ interface ValidatorInterface
     /**
      * Validate the pattern. On failure throw an InvalidPatternException.
      *
-     * @param  string $pattern
+     * @param  string                  $pattern
      * @throws InvalidPatternException
      * @return string
      */

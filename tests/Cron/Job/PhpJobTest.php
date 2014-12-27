@@ -10,9 +10,7 @@
 
 namespace Cron\Job;
 
-use Cron\Job\ShellJob;
 use Cron\Report\JobReport;
-use Cron\Schedule\CrontabSchedule;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
