@@ -22,7 +22,7 @@ interface ExecutorInterface
      * Execute the jobs.
      *
      * @param  JobInterface[]    $jobs
-     * @return ReportInterface[]
+     * @return ReportInterface
      */
     public function execute(array $jobs);
 
