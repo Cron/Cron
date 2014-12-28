@@ -2,7 +2,8 @@ Cron
 ====
  [![Packagist](https://img.shields.io/packagist/v/cron/cron.svg?style=flat-square)](https://packagist.org/packages/cron/cron)
  [![Build Status](https://img.shields.io/travis/Cron/Cron.svg?style=flat-square)](https://travis-ci.org/Cron/Cron)
- [![Scrutinizer](https://img.shields.io/scrutinizer/g/Cron/Cron.svg?style=flat-square)](https://scrutinizer-ci.com/g/Cron/Cron)
+ [![Quality](https://img.shields.io/scrutinizer/g/Cron/Cron.svg?style=flat-square)](https://scrutinizer-ci.com/g/Cron/Cron)
+ [![Coverage](https://img.shields.io/scrutinizer/coverage/g/Cron/Cron.svg?style=flat-square)](https://scrutinizer-ci.com/g/Cron/Cron)
  [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/f4992bd7-896a-4340-b2b5-d3af5b281101.svg?style=flat-square)](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101)
  [![Packagist](https://img.shields.io/packagist/dt/Cron/Cron.svg?style=flat-square)](https://packagist.org/packages/cron/cron)
  [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
