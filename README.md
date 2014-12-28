@@ -1,13 +1,12 @@
 Cron
 ====
- [![Latest Stable Version](https://poser.pugx.org/cron/cron/v/stable.png)](https://packagist.org/packages/cron/cron)
- [![Latest Unstable Version](https://poser.pugx.org/cron/cron/v/unstable.png)](//packagist.org/packages/cron/cron)
- [![Build Status](https://travis-ci.org/Cron/Cron.png?branch=master)](https://travis-ci.org/Cron/Cron)
- [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Cron/Cron/badges/quality-score.png?s=2d7680f23ea48a279afc226624c9d5653755a750)](https://scrutinizer-ci.com/g/Cron/Cron/)
- [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101/mini.png)](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101)
- [![Total Downloads](https://poser.pugx.org/cron/cron/downloads.png)](https://packagist.org/packages/cron/cron)
- [![Dependency Status](https://www.versioneye.com/user/projects/53237856ec137572640000df/badge.png)](https://www.versioneye.com/user/projects/53237856ec137572640000df)
-
+ [![Packagist](https://img.shields.io/packagist/v/cron/cron.svg?style=flat-square)](https://packagist.org/packages/cron/cron)
+ [![Build Status](https://img.shields.io/travis/Cron/Cron.svg?style=flat-square)](https://travis-ci.org/Cron/Cron)
+ [![Scrutinizer](https://img.shields.io/scrutinizer/g/Cron/Cron.svg?style=flat-square)](https://scrutinizer-ci.com/g/Cron/Cron)
+ [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/f4992bd7-896a-4340-b2b5-d3af5b281101.svg?style=flat-square)](https://insight.sensiolabs.com/projects/f4992bd7-896a-4340-b2b5-d3af5b281101)
+ [![Packagist](https://img.shields.io/packagist/dt/Cron/Cron.svg?style=flat-square)](https://packagist.org/packages/cron/cron)
+ [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+ 
 This library enables you to have only one general crontab entry that will trigger several different cronjobs that can be
 defined through this library. The Cron library will decide if the job needs to run or not.
 
