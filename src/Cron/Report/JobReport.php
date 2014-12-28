@@ -24,6 +24,7 @@ class JobReport implements ReportInterface
     protected $output = array();
     protected $startTime;
     protected $endTime;
+    protected $successful;
 
     /**
      * @param JobInterface $job
@@ -34,11 +35,19 @@ class JobReport implements ReportInterface
     }
 
     /**
+     * @param bool $state
+     */
+    public function setSuccessful($state)
+    {
+        $this->successful = $state;
+    }
+
+    /**
      * @return boolean|null
      */
     public function isSuccessful()
     {
-
+        return $this->successful;
     }
 
     /**

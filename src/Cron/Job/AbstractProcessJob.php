@@ -50,7 +50,7 @@ abstract class AbstractProcessJob extends AbstractJob
     /**
      * @param int $pid
      */
-    public function setPid($pid)
+    protected function setPid($pid)
     {
         $this->pid = $pid;
     }
@@ -98,6 +98,7 @@ abstract class AbstractProcessJob extends AbstractJob
 
         if (!$running && $this->getProcess()->isStarted()) {
             $this->registerEnd();
+            $this->registerSuccessful();
         }
 
         return $running;
@@ -123,6 +124,14 @@ abstract class AbstractProcessJob extends AbstractJob
         if (is_null($this->report->getEndTime())) {
             $this->report->setEndTime(microtime(true));
         }
+    }
+
+    /**
+     * Register the end state.
+     */
+    protected function registerSuccessful()
+    {
+        $this->report->setSuccessful($this->getProcess()->isSuccessful());
     }
 
 }

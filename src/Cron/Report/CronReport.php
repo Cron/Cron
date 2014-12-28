@@ -29,7 +29,17 @@ class CronReport implements ReportInterface
      */
     public function isSuccessful()
     {
+        foreach ($this->getReports() as $report) {
+            if (is_null($report->isSuccessful())) {
+                return null;
+            }
 
+            if (false === $report->isSuccessful()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -56,7 +66,7 @@ class CronReport implements ReportInterface
     public function getReport(JobInterface $job)
     {
         foreach ($this->taskReports as $report) {
-            if ($report->getJob() == $job) {
+            if ($report->getJob() === $job) {
                 return $report;
             }
         }
