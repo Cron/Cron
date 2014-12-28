@@ -106,17 +106,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkHour(\DateTime $now)
     {
-        if ($this->parts['hour'] != '*') {
-            foreach ($this->parseRule($this->parts['hour'], 0, 23) as $value) {
-                if ($now->format('H') == $value || $now->format('G') == $value) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return null;
+        return $this->checkPart('hour', 0, 23, array('H', 'G'), $now);
     }
 
     /**
@@ -127,17 +117,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkDay(\DateTime $now)
     {
-        if ($this->parts['day'] != '*') {
-            foreach ($this->parseRule($this->parts['day'], 0, 31) as $value) {
-                if ($now->format('j') == $value || $now->format('d') == $value) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return null;
+        return $this->checkPart('day', 0, 31, array('j', 'd'), $now);
     }
 
     /**
@@ -148,17 +128,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkMonth(\DateTime $now)
     {
-        if ($this->parts['month'] != '*') {
-            foreach ($this->parseRule($this->parts['month'], 1, 12) as $value) {
-                if ($now->format('n') == $value || $now->format('m') == $value) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return null;
+        return $this->checkPart('month', 1, 12, array('n', 'm'), $now);
     }
 
     /**
@@ -169,10 +139,25 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkDayOfWeek(\DateTime $now)
     {
-        if ($this->parts['dow'] != '*') {
-            foreach ($this->parseRule($this->parts['dow'], 0, 6) as $value) {
-                if ($now->format('w') == $value) {
-                    return true;
+        return $this->checkPart('dow', 0, 6, array('w'), $now);
+    }
+
+    /**
+     * @param  string    $partName
+     * @param  int       $min
+     * @param  int       $max
+     * @param  array     $formats
+     * @param  \DateTime $now
+     * @return bool|null
+     */
+    protected function checkPart($partName, $min, $max, array $formats, \DateTime $now)
+    {
+        if ($this->parts[$partName] != '*') {
+            foreach ($this->parseRule($this->parts[$partName], $min, $max) as $value) {
+                foreach ($formats as $format) {
+                    if ($now->format($format) == $value) {
+                        return true;
+                    }
                 }
             }
 

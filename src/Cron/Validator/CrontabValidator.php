@@ -30,23 +30,46 @@ class CrontabValidator implements ValidatorInterface
 
         $parts = preg_split('/[\s\t]+/', $pattern);
 
-        if (!isset($parts[0]) || !preg_match($this->buildPattern('[0-5]?\d'), $parts[0])) {
-            throw new InvalidPatternException('Invalid minute.');
-        }
-        if (!isset($parts[1]) || !preg_match($this->buildPattern('[01]?\d|2[0-3]'), $parts[1])) {
-            throw new InvalidPatternException('Invalid hour.');
-        }
-        if (!isset($parts[2]) || !preg_match($this->buildPattern('0?[1-9]|[12]\d|3[01]'), $parts[2])) {
-            throw new InvalidPatternException('Invalid day.');
-        }
-        if (!isset($parts[3]) || !preg_match($this->buildPattern('[1-9]|1[012]'), $parts[3])) {
-            throw new InvalidPatternException('Invalid month.');
-        }
-        if (!isset($parts[4]) || !preg_match($this->buildPattern('[0-6]'), $parts[4])) {
-            throw new InvalidPatternException('Invalid day of week.');
-        }
-        if (isset($parts[5]) && !preg_match($this->buildPattern('20([0-9]{2})'), $parts[5])) {
-            throw new InvalidPatternException('Invalid year.');
+        $tests = array(
+            0 => array(
+                'partName' => 'minute',
+                'pattern' => '[0-5]?\d',
+                'required' => true,
+            ),
+            1 => array(
+                'partName' => 'hour',
+                'pattern' => '[01]?\d|2[0-3]',
+                'required' => true,
+            ),
+            2 => array(
+                'partName' => 'day',
+                'pattern' => '0?[1-9]|[12]\d|3[01]',
+                'required' => true,
+            ),
+            3 => array(
+                'partName' => 'month',
+                'pattern' => '[1-9]|1[012]',
+                'required' => true,
+            ),
+            4 => array(
+                'partName' => 'day of week',
+                'pattern' => '[0-6]',
+                'required' => true,
+            ),
+            5 => array(
+                'partName' => 'year',
+                'pattern' => '20([0-9]{2})',
+                'required' => false,
+            ),
+        );
+
+        foreach ($tests as $i => $test) {
+            if (!$test['required'] && !isset($parts[$i])) {
+                continue;
+            }
+            if (!isset($parts[$i]) || !preg_match($this->buildPattern($test['pattern']), $parts[$i])) {
+                throw new InvalidPatternException(sprintf('Invalid %s.', $test['partName']));
+            }
         }
 
         return $pattern;
