@@ -13,6 +13,8 @@ namespace Cron\Schedule;
 use Cron\Validator\CrontabValidator;
 
 /**
+ * CrontabSchedule holds the job schedule.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class CrontabSchedule implements ScheduleInterface
@@ -53,7 +55,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Validate if this pattern can run on the given date.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool
      */
     public function valid(\DateTime $now)
@@ -80,7 +83,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the minute matches.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool|null
      */
     protected function checkMinute(\DateTime $now)
@@ -101,7 +105,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the hour matches.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool|null
      */
     protected function checkHour(\DateTime $now)
@@ -112,7 +117,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the day matches.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool|null
      */
     protected function checkDay(\DateTime $now)
@@ -123,7 +129,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the month matches.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool|null
      */
     protected function checkMonth(\DateTime $now)
@@ -134,7 +141,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Check if the day of the week matches.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool|null
      */
     protected function checkDayOfWeek(\DateTime $now)
@@ -143,11 +151,12 @@ class CrontabSchedule implements ScheduleInterface
     }
 
     /**
-     * @param  string    $partName
-     * @param  int       $min
-     * @param  int       $max
-     * @param  array     $formats
-     * @param  \DateTime $now
+     * @param string    $partName
+     * @param int       $min
+     * @param int       $max
+     * @param array     $formats
+     * @param \DateTime $now
+     *
      * @return bool|null
      */
     protected function checkPart($partName, $min, $max, array $formats, \DateTime $now)
@@ -168,7 +177,8 @@ class CrontabSchedule implements ScheduleInterface
     }
 
     /**
-     * @param  string                    $pattern
+     * @param string $pattern
+     *
      * @throws \InvalidArgumentException
      */
     public function setPattern($pattern)
@@ -190,7 +200,8 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Parse the pattern into a rule for every property.
      *
-     * @param  string                    $pattern
+     * @param string $pattern
+     *
      * @return string[]
      * @throws \InvalidArgumentException
      */
@@ -222,9 +233,10 @@ class CrontabSchedule implements ScheduleInterface
     /**
      * Convert a rule to an array of all its values.
      *
-     * @param  string $rule
-     * @param  int    $min
-     * @param  int    $max
+     * @param string $rule
+     * @param int    $min
+     * @param int    $max
+     *
      * @return array
      */
     protected function parseRule($rule, $min, $max)

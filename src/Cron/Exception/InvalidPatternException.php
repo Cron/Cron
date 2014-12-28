@@ -10,6 +10,8 @@
 namespace Cron\Exception;
 
 /**
+ * InvalidPatternException is thrown when a pattern can not be validated.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class InvalidPatternException extends \Exception

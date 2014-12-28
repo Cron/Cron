@@ -13,6 +13,8 @@ namespace Cron\Job;
 use Symfony\Component\Process\Process;
 
 /**
+ * ShellJob is a job for running shell commands.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class ShellJob extends AbstractProcessJob

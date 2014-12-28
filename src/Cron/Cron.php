@@ -15,6 +15,8 @@ use Cron\Executor\ExecutorInterface;
 use Cron\Resolver\ResolverInterface;
 
 /**
+ * Cron is the main class of the project.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class Cron

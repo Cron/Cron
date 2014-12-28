@@ -13,6 +13,8 @@ namespace Cron\Report;
 use Cron\Job\JobInterface;
 
 /**
+ * JobReport contains the output of a job.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class JobReport implements ReportInterface

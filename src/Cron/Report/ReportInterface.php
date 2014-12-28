@@ -11,6 +11,8 @@
 namespace Cron\Report;
 
 /**
+ * ReportInterface is the interface implemented by all reports.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 interface ReportInterface

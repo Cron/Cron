@@ -11,12 +11,15 @@
 namespace Cron\Schedule;
 
 /**
+ * ScheduleInterface is the interface implemented by all schedules.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 interface ScheduleInterface
 {
     /**
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool
      */
     public function valid(\DateTime $now);

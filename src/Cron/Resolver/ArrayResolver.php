@@ -13,6 +13,8 @@ namespace Cron\Resolver;
 use Cron\Job\JobInterface;
 
 /**
+ * ArrayResolver resolves jobs from an array of jobs.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class ArrayResolver implements ResolverInterface

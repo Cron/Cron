@@ -14,6 +14,8 @@ use Cron\Job\JobInterface;
 use Cron\Report\ReportInterface;
 
 /**
+ * ExecutorInterface is the interface implemented by all executor classes.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 interface ExecutorInterface
@@ -21,7 +23,8 @@ interface ExecutorInterface
     /**
      * Execute the jobs.
      *
-     * @param  JobInterface[]    $jobs
+     * @param JobInterface[] $jobs
+     *
      * @return ReportInterface
      */
     public function execute(array $jobs);

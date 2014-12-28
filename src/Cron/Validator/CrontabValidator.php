@@ -13,6 +13,8 @@ namespace Cron\Validator;
 use Cron\Exception\InvalidPatternException;
 
 /**
+ * CrontabValidator validates a schedule pattern.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class CrontabValidator implements ValidatorInterface
@@ -76,7 +78,8 @@ class CrontabValidator implements ValidatorInterface
     }
 
     /**
-     * @param  string $rangeRegex
+     * @param string $rangeRegex
+     *
      * @return string
      */
     private function buildPattern($rangeRegex)
@@ -89,7 +92,8 @@ class CrontabValidator implements ValidatorInterface
     /**
      * Translate known shorthands to basic cron syntax.
      *
-     * @param  string $pattern
+     * @param string $pattern
+     *
      * @return string
      */
     protected function findReplacements($pattern)

@@ -13,6 +13,8 @@ namespace Cron\Job;
 use Symfony\Component\Process\PhpProcess;
 
 /**
+ * PhpJob is a job for running PHP scripts.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class PhpJob extends AbstractProcessJob

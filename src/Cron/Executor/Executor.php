@@ -15,6 +15,8 @@ use Cron\Job\JobInterface;
 use Cron\Report\ReportInterface;
 
 /**
+ * Executor triggers jobs and builds the reports.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class Executor implements ExecutorInterface
@@ -25,7 +27,8 @@ class Executor implements ExecutorInterface
     protected $sets = array();
 
     /**
-     * @param  JobInterface[]  $jobs
+     * @param JobInterface[] $jobs
+     *
      * @return ReportInterface
      */
     public function execute(array $jobs)
@@ -53,6 +56,9 @@ class Executor implements ExecutorInterface
         }
     }
 
+    /**
+     * @param CronReport $report
+     */
     protected function startProcesses(CronReport $report)
     {
         foreach ($this->sets as $set) {
@@ -61,6 +67,9 @@ class Executor implements ExecutorInterface
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isRunning()
     {
         foreach ($this->sets as $set) {

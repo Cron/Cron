@@ -13,6 +13,8 @@ namespace Cron\Resolver;
 use Cron\Job\JobInterface;
 
 /**
+ * ResolverInterface is the interface implemented by all resolvers.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 interface ResolverInterface

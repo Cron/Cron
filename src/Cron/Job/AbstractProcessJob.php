@@ -14,6 +14,8 @@ use Cron\Report\JobReport;
 use Symfony\Component\Process\Process;
 
 /**
+ * AbstractProcessJob Base for all process jobs.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 abstract class AbstractProcessJob extends AbstractJob
@@ -76,7 +78,8 @@ abstract class AbstractProcessJob extends AbstractJob
      *
      * Will check if we have a process and make sure it isn't already running.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool
      */
     public function valid(\DateTime $now)

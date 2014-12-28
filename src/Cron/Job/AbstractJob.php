@@ -14,6 +14,8 @@ use Cron\Report\JobReport;
 use Cron\Schedule\ScheduleInterface;
 
 /**
+ * AbstractJob base job class.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 abstract class AbstractJob implements JobInterface
@@ -24,7 +26,7 @@ abstract class AbstractJob implements JobInterface
     protected $schedule;
 
     /**
-     * {@inheritDocs}
+     * {@inheritdoc}
      */
     public function setSchedule(ScheduleInterface $schedule)
     {
@@ -42,7 +44,8 @@ abstract class AbstractJob implements JobInterface
     /**
      * Validate the job.
      *
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool
      */
     public function valid(\DateTime $now)

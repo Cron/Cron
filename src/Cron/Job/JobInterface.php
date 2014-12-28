@@ -14,6 +14,8 @@ use Cron\Schedule\ScheduleInterface;
 use Cron\Report\JobReport;
 
 /**
+ * JobInterface is the interface implemented by all jobs.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 interface JobInterface
@@ -21,7 +23,8 @@ interface JobInterface
     /**
      * Set the task schedule.
      *
-     * @param  ScheduleInterface $schedule
+     * @param ScheduleInterface $schedule
+     *
      * @return void
      */
     public function setSchedule(ScheduleInterface $schedule);
@@ -32,7 +35,8 @@ interface JobInterface
     public function getSchedule();
 
     /**
-     * @param  \DateTime $now
+     * @param \DateTime $now
+     *
      * @return bool
      */
     public function valid(\DateTime $now);

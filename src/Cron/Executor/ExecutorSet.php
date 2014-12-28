@@ -15,6 +15,8 @@ use Cron\Report\ReportInterface;
 use Cron\Report\JobReport;
 
 /**
+ * ExecutorSet is the collection of a job and its reports.
+ *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class ExecutorSet
@@ -61,6 +63,9 @@ class ExecutorSet
         return $this->report;
     }
 
+    /**
+     * Runs the job.
+     */
     public function run()
     {
         $this->job->run($this->getReport());
