@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -8,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Cron\Job;
+namespace Cron\Report;
 
-use Cron\Report\CronReport;
-use Cron\Report\JobReport;
+use Cron\Job\JobInterface;
+use Cron\Job\PhpJob;
+use Cron\Job\ShellJob;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
@@ -78,7 +80,8 @@ class CronReportTest extends \PHPUnit_Framework_TestCase
         $cron = $this->createCron($job);
         $report = $cron->run();
 
-        while ($cron->isRunning()) {}
+        while ($cron->isRunning()) {
+        }
 
         $this->assertTrue($report->isSuccessful());
     }
@@ -89,7 +92,8 @@ class CronReportTest extends \PHPUnit_Framework_TestCase
         $cron = $this->createCron($job);
         $report = $cron->run();
 
-        while ($cron->isRunning()) {}
+        while ($cron->isRunning()) {
+        }
 
         $this->assertFalse($report->isSuccessful());
     }
@@ -100,7 +104,8 @@ class CronReportTest extends \PHPUnit_Framework_TestCase
         $cron = $this->createCron($job);
         $report = $cron->run();
 
-        while ($cron->isRunning()) {}
+        while ($cron->isRunning()) {
+        }
 
         $this->assertNotEmpty($report->getReport($job)->getStartTime());
     }
@@ -111,7 +116,8 @@ class CronReportTest extends \PHPUnit_Framework_TestCase
         $cron = $this->createCron($job);
         $report = $cron->run();
 
-        while ($cron->isRunning()) {}
+        while ($cron->isRunning()) {
+        }
 
         $reportErrorOutput = $report->getReport($job)->getError();
         $reportOutput = $report->getReport($job)->getOutput();
@@ -126,7 +132,8 @@ class CronReportTest extends \PHPUnit_Framework_TestCase
         $cron = $this->createCron($job);
         $report = $cron->run();
 
-        while ($cron->isRunning()) {}
+        while ($cron->isRunning()) {
+        }
 
         $reportErrorOutput = $report->getReport($job)->getError();
         $reportOutput = $report->getReport($job)->getOutput();

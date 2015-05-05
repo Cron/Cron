@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -8,10 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Cron\Resolver;
+namespace Cron\Executor;
 
-use Cron\Executor\Executor;
-use Cron\Executor\ExecutorInterface;
 use Cron\Job\ShellJob;
 
 /**

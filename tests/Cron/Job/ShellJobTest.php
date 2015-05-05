@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -10,7 +11,6 @@
 
 namespace Cron\Job;
 
-use Cron\Job\ShellJob;
 use Cron\Report\JobReport;
 use Cron\Schedule\CrontabSchedule;
 
@@ -57,6 +57,5 @@ class ShellJobTest extends \PHPUnit_Framework_TestCase
         $this->shellJob->run(new JobReport($this->shellJob));
         $this->assertTrue($this->shellJob->isRunning());
         $this->assertFalse($this->shellJob->valid(new \DateTime()));
-
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -43,7 +44,7 @@ class JobReport implements ReportInterface
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
     public function isSuccessful()
     {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -133,5 +134,4 @@ abstract class AbstractProcessJob extends AbstractJob
     {
         $this->report->setSuccessful($this->getProcess()->isSuccessful());
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -84,9 +85,9 @@ class CrontabValidator implements ValidatorInterface
      */
     private function buildPattern($rangeRegex)
     {
-        $range = '(' . $rangeRegex . ')(-(' . $rangeRegex . '))?';
+        $range = '('.$rangeRegex.')(-('.$rangeRegex.'))?';
 
-        return '/^(\*(\/\d+)?|' . $range . '(,' . $range . ')*)$/';
+        return '/^(\*(\/\d+)?|'.$range.'(,'.$range.')*)$/';
     }
 
     /**

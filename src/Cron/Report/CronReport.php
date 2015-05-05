@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -25,13 +26,13 @@ class CronReport implements ReportInterface
     protected $taskReports = array();
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
     public function isSuccessful()
     {
         foreach ($this->getReports() as $report) {
             if (is_null($report->isSuccessful())) {
-                return null;
+                return;
             }
 
             if (false === $report->isSuccessful()) {
@@ -71,6 +72,6 @@ class CronReport implements ReportInterface
             }
         }
 
-        return null;
+        return;
     }
 }

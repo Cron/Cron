@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -85,7 +86,8 @@ class CronTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\Cron\Report\ReportInterface', $report);
 
-        while ($cron->isRunning()) {}
+        while ($cron->isRunning()) {
+        }
 
         $reportOutput = $report->getReport($job)->getOutput();
         $this->assertEquals('total', trim($reportOutput[0]));

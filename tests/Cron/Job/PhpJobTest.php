@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -52,6 +53,5 @@ class PhpJobTest extends \PHPUnit_Framework_TestCase
         $this->phpJob->getProcess()->wait();
         $output = $this->phpJob->getProcess()->getOutput();
         $this->assertEquals($expected, $output);
-
     }
 }

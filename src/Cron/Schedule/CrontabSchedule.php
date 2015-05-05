@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -20,7 +21,8 @@ use Cron\Validator\CrontabValidator;
 class CrontabSchedule implements ScheduleInterface
 {
     /**
-     * The crontab pattern
+     * The crontab pattern.
+     *
      * @see setPattern
      *
      * @var string
@@ -29,6 +31,7 @@ class CrontabSchedule implements ScheduleInterface
 
     /**
      * The rule for every property.
+     *
      * @see parsePattern
      *
      * @var string[]
@@ -99,7 +102,7 @@ class CrontabSchedule implements ScheduleInterface
             return false;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -173,7 +176,7 @@ class CrontabSchedule implements ScheduleInterface
             return false;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -203,6 +206,7 @@ class CrontabSchedule implements ScheduleInterface
      * @param string $pattern
      *
      * @return string[]
+     *
      * @throws \InvalidArgumentException
      */
     protected function parsePattern($pattern)
@@ -218,13 +222,13 @@ class CrontabSchedule implements ScheduleInterface
 
         $regex = array();
         foreach (array_slice($parts, 0, 5) as $name => $number) {
-            $range = '(' . $number . ')(-(' . $number . '))?';
-            $regex[$name] = '(?P<' . $name . '>(\*(\/\d+)?|' . $range . '(,' . $range . ')*))';
+            $range = '('.$number.')(-('.$number.'))?';
+            $regex[$name] = '(?P<'.$name.'>(\*(\/\d+)?|'.$range.'(,'.$range.')*))';
         }
-        $range = '(' . $parts['year'] . ')(-(' . $parts['year'] . '))?';
-        $regexYear = '( (?P<year>(\*(\/\d+)?|' . $range . '(,' . $range . ')*)))?';
+        $range = '('.$parts['year'].')(-('.$parts['year'].'))?';
+        $regexYear = '( (?P<year>(\*(\/\d+)?|'.$range.'(,'.$range.')*)))?';
 
-        $regex = '/^' . implode('([\s\t]+)', $regex) . $regexYear . '$/';
+        $regex = '/^'.implode('([\s\t]+)', $regex).$regexYear.'$/';
         preg_match($regex, $pattern, $matches);
 
         return array_intersect_key($matches, $parts);

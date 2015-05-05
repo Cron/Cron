@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -117,11 +118,11 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $dow = $now->format('w');
 
             $data[] = array('* * * * *', $now);
-            $data[] = array($min . ' * * * *',  $now);
-            $data[] = array('* ' . $hour . ' * * *', $now);
-            $data[] = array('* * ' . $day . ' * *', $now);
-            $data[] = array('* * * ' . $month . ' *', $now);
-            $data[] = array('* * * * ' . $dow, $now);
+            $data[] = array($min.' * * * *',  $now);
+            $data[] = array('* '.$hour.' * * *', $now);
+            $data[] = array('* * '.$day.' * *', $now);
+            $data[] = array('* * * '.$month.' *', $now);
+            $data[] = array('* * * * '.$dow, $now);
         }
 
         return $data;
@@ -151,11 +152,11 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $dow = (int) $now->format('w');
             $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
-            $data[] = array($badMin . ' * * * *', $now);
-            $data[] = array('* ' . $badHour . ' * * *', $now);
-            $data[] = array('* * ' . $badDay . ' * *', $now);
-            $data[] = array('* * * ' . $badMonth . ' *', $now);
-            $data[] = array('* * * * ' . $badDow, $now);
+            $data[] = array($badMin.' * * * *', $now);
+            $data[] = array('* '.$badHour.' * * *', $now);
+            $data[] = array('* * '.$badDay.' * *', $now);
+            $data[] = array('* * * '.$badMonth.' *', $now);
+            $data[] = array('* * * * '.$badDow, $now);
         }
 
         return $data;
@@ -185,7 +186,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
         $method = new \ReflectionMethod('\Cron\Schedule\CrontabSchedule', 'parseRule');
         $method->setAccessible(true);
 
-        $this->assertEquals($expected, $method->invoke(new CrontabSchedule, $rule, $minMax[0], $minMax[1]));
+        $this->assertEquals($expected, $method->invoke(new CrontabSchedule(), $rule, $minMax[0], $minMax[1]));
     }
 
     public function parseRuleProvider()
@@ -220,7 +221,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
         $this->schedule->setPattern('*/5 * * * *');
 
         for ($i = 0; $i < 60; $i++) {
-            $now = new \DateTime('2014-12-27 13:11:' . $i);
+            $now = new \DateTime('2014-12-27 13:11:'.$i);
             $this->assertFalse($this->schedule->valid($now));
         }
     }

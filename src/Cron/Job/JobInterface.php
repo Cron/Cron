@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -24,8 +25,6 @@ interface JobInterface
      * Set the task schedule.
      *
      * @param ScheduleInterface $schedule
-     *
-     * @return void
      */
     public function setSchedule(ScheduleInterface $schedule);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -25,6 +26,7 @@ interface ValidatorInterface
      * @param string $pattern
      *
      * @throws InvalidPatternException
+     *
      * @return string
      */
     public function validate($pattern);

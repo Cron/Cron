@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Cron package.
  *
@@ -64,7 +65,7 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
         $noCommandJob->setSchedule(new CrontabSchedule('* * * * *'));
 
         $invalidJob = new ShellJob();
-        $invalidJob->setSchedule(new CrontabSchedule('* * * * ' . $badDow));
+        $invalidJob->setSchedule(new CrontabSchedule('* * * * '.$badDow));
 
         return array(
             array(array(), array()),
