@@ -13,9 +13,17 @@
         "php": "~5.3",
         "symfony/process": "~2.4"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
     "autoload": {
-        "psr-0" : {
-            "Cron" : "src/"
+        "psr-0": {
+            "Cron": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Cron": "tests/"
         }
     },
     "extra": {

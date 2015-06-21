@@ -9,4 +9,4 @@
  * file that was distributed with this source code.
  */
 $loader = require_once __DIR__.'/../vendor/autoload.php';
-$loader->add('Cron\\', __DIR__);
+
