@@ -73,10 +73,14 @@ Installation
 
 Add the following to your project's composer.json:
 
+```bash
+$ composer require cron/cron
+```
+
 ```javascript
 {
     "require": {
-        "cron/cron": "1.0.*@dev"
+        "cron/cron": "^1.0"
     }
 }
 ```
