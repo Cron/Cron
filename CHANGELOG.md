@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.9 / 2016-03-24
+
+* Drop support for php5.3 and php5.4 [#34](https://github.com/Cron/Cron/pull/34) ([@NoUseFreak](https://github.com/NoUseFreak)) 
+* Update to psr4 [#32](https://github.com/Cron/Cron/pull/32) ([@NoUseFreak](https://github.com/NoUseFreak)) 
+
+
+## 1.0.8 / 2015-12-14
+
+* Allow symfony3. [#30](https://github.com/Cron/Cron/pull/30) ([@NoUseFreak](https://github.com/NoUseFreak)) 
+
+
 ## 1.0.7 / 2015-12-07
 
 * Run tests on PHP7. [#29](https://github.com/Cron/Cron/pull/29) ([@NoUseFreak](https://github.com/NoUseFreak)) 
