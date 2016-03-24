@@ -25,7 +25,7 @@ class Executor implements ExecutorInterface
     /**
      * @var ExecutorSet[]
      */
-    protected $sets = array();
+    protected $sets = [];
 
     /**
      * @param JobInterface[] $jobs

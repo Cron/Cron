@@ -23,7 +23,7 @@ class CronReport implements ReportInterface
     /**
      * @var JobReport[]
      */
-    protected $taskReports = array();
+    protected $taskReports = [];
 
     /**
      * @return bool|null
@@ -32,7 +32,7 @@ class CronReport implements ReportInterface
     {
         foreach ($this->getReports() as $report) {
             if (is_null($report->isSuccessful())) {
-                return;
+                return null;
             }
 
             if (false === $report->isSuccessful()) {

@@ -28,7 +28,7 @@ class ArrayResolver implements ResolverInterface
     /**
      * @param array $jobs
      */
-    public function __construct(array $jobs = array())
+    public function __construct(array $jobs = [])
     {
         $this->jobs = $jobs;
     }
@@ -54,7 +54,7 @@ class ArrayResolver implements ResolverInterface
      */
     public function resolve()
     {
-        $jobs = array();
+        $jobs = [];
         $now = new \DateTime();
 
         foreach ($this->jobs as $job) {

@@ -114,7 +114,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkHour(\DateTime $now)
     {
-        return $this->checkPart('hour', 0, 23, array('H', 'G'), $now);
+        return $this->checkPart('hour', 0, 23, ['H', 'G'], $now);
     }
 
     /**
@@ -126,7 +126,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkDay(\DateTime $now)
     {
-        return $this->checkPart('day', 0, 31, array('j', 'd'), $now);
+        return $this->checkPart('day', 0, 31, ['j', 'd'], $now);
     }
 
     /**
@@ -138,7 +138,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkMonth(\DateTime $now)
     {
-        return $this->checkPart('month', 1, 12, array('n', 'm'), $now);
+        return $this->checkPart('month', 1, 12, ['n', 'm'], $now);
     }
 
     /**
@@ -150,7 +150,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function checkDayOfWeek(\DateTime $now)
     {
-        return $this->checkPart('dow', 0, 6, array('w'), $now);
+        return $this->checkPart('dow', 0, 6, ['w'], $now);
     }
 
     /**
@@ -211,16 +211,16 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function parsePattern($pattern)
     {
-        $parts = array(
+        $parts = [
             'min' => '[0-5]?\d',
             'hour' => '[01]?\d|2[0-3]',
             'day' => '0?[1-9]|[12]\d|3[01]',
             'month' => '[1-9]|1[012]',
             'dow' => '[0-6]',
             'year' => '20([0-9]{2})',
-        );
+        ];
 
-        $regex = array();
+        $regex = [];
         foreach (array_slice($parts, 0, 5) as $name => $number) {
             $range = '('.$number.')(-('.$number.'))?';
             $regex[$name] = '(?P<'.$name.'>(\*(\/\d+)?|'.$range.'(,'.$range.')*))';
@@ -245,7 +245,7 @@ class CrontabSchedule implements ScheduleInterface
      */
     protected function parseRule($rule, $min, $max)
     {
-        $result = array();
+        $result = [];
 
         foreach (explode(',', $rule) as $value) {
             if (preg_match('/^([0-9]+)-([0-9]+)$/', $value, $r)) {

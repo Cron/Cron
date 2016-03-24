@@ -36,7 +36,7 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testEmptyResolve()
     {
-        $this->assertEquals(array(), $this->resolver->resolve());
+        $this->assertEquals([], $this->resolver->resolve());
     }
 
     /**
@@ -67,19 +67,19 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
         $invalidJob = new ShellJob();
         $invalidJob->setSchedule(new CrontabSchedule('* * * * '.$badDow));
 
-        return array(
-            array(array(), array()),
-            array(array($validJob), array($validJob)),
-            array(array($noScheduleJob), array()),
-            array(array($validJob, $noScheduleJob), array($validJob)),
-            array(array($noCommandJob), array()),
-            array(array($noCommandJob, $noScheduleJob), array()),
-            array(array($noCommandJob, $validJob, $noScheduleJob), array($validJob)),
-            array(array($invalidJob), array()),
-            array(array($invalidJob, $validJob), array($validJob)),
-            array(array($invalidJob, $validJob, $noCommandJob), array($validJob)),
-            array(array($invalidJob, $validJob, $noCommandJob, $noScheduleJob), array($validJob)),
-        );
+        return [
+            [[], []],
+            [[$validJob], [$validJob]],
+            [[$noScheduleJob], []],
+            [[$validJob, $noScheduleJob], [$validJob]],
+            [[$noCommandJob], []],
+            [[$noCommandJob, $noScheduleJob], []],
+            [[$noCommandJob, $validJob, $noScheduleJob], [$validJob]],
+            [[$invalidJob], []],
+            [[$invalidJob, $validJob], [$validJob]],
+            [[$invalidJob, $validJob, $noCommandJob], [$validJob]],
+            [[$invalidJob, $validJob, $noCommandJob, $noScheduleJob], [$validJob]],
+        ];
     }
 
     public function testAddJobs()
@@ -90,6 +90,6 @@ class ArrayResolverTest extends \PHPUnit_Framework_TestCase
         $job = new ShellJob();
         $this->resolver->addJob($job);
 
-        $this->assertEquals(array($job), $property->getValue($this->resolver));
+        $this->assertEquals([$job], $property->getValue($this->resolver));
     }
 }

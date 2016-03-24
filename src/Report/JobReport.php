@@ -21,8 +21,8 @@ use Cron\Job\JobInterface;
 class JobReport implements ReportInterface
 {
     protected $job;
-    protected $error = array();
-    protected $output = array();
+    protected $error = [];
+    protected $output = [];
     protected $startTime;
     protected $endTime;
     protected $successful;

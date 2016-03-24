@@ -33,38 +33,38 @@ class CrontabValidator implements ValidatorInterface
 
         $parts = preg_split('/[\s\t]+/', $pattern);
 
-        $tests = array(
-            0 => array(
+        $tests = [
+            [
                 'partName' => 'minute',
                 'pattern' => '[0-5]?\d',
                 'required' => true,
-            ),
-            1 => array(
+            ],
+            [
                 'partName' => 'hour',
                 'pattern' => '[01]?\d|2[0-3]',
                 'required' => true,
-            ),
-            2 => array(
+            ],
+            [
                 'partName' => 'day',
                 'pattern' => '0?[1-9]|[12]\d|3[01]',
                 'required' => true,
-            ),
-            3 => array(
+            ],
+            [
                 'partName' => 'month',
                 'pattern' => '[1-9]|1[012]',
                 'required' => true,
-            ),
-            4 => array(
+            ],
+            [
                 'partName' => 'day of week',
                 'pattern' => '[0-6]',
                 'required' => true,
-            ),
-            5 => array(
+            ],
+            [
                 'partName' => 'year',
                 'pattern' => '20([0-9]{2})',
                 'required' => false,
-            ),
-        );
+            ],
+        ];
 
         foreach ($tests as $i => $test) {
             if (!$test['required'] && !isset($parts[$i])) {
@@ -103,14 +103,14 @@ class CrontabValidator implements ValidatorInterface
             return $pattern;
         }
 
-        $replace = array(
+        $replace = [
             '@yearly'   => '0 0 1 1 * *',
             '@annually' => '0 0 1 1 * *',
             '@monthly'  => '0 0 1 * *',
             '@weekly'   => '0 0 * * 0',
             '@daily'    => '0 0 * * *',
             '@hourly'   => '0 * * * *',
-        );
+        ];
         if (isset($replace[$pattern])) {
             $pattern = $replace[$pattern];
         }

@@ -39,6 +39,6 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase
         $job->setCommand('ls -la > test.log');
         $job->setCommand('du -h -d 1 /Users/driesdepeuter/Programming');
 
-        $this->executor->execute(array($job));
+        $this->executor->execute([$job]);
     }
 }

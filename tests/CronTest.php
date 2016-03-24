@@ -63,7 +63,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
     {
         $task = new ShellJob();
 
-        $this->cron->setResolver(new ArrayResolver(array($task)));
+        $this->cron->setResolver(new ArrayResolver([$task]));
         $this->cron->setExecutor(new Executor());
 
         $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->cron->run());

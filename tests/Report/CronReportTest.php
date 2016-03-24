@@ -41,7 +41,7 @@ class CronReportTest extends \PHPUnit_Framework_TestCase
 
         $this->report->addJobReport($jobReport);
 
-        $this->assertEquals(array($jobReport), $this->report->getReports());
+        $this->assertEquals([$jobReport], $this->report->getReports());
     }
 
     public function testGetReportExists()

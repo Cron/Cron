@@ -41,27 +41,27 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
 
     public function validPatternProvider()
     {
-        return array(
-            array('* * * * *'),
-            array('* * * * * *'),
-            array('*/2 * * * *'),
-            array('* */2 * * *'),
-            array('* * */2 * *'),
-            array('* * * */2 *'),
-            array('* * * * */2'),
-            array('* * * * * */2'),
-            array('1 * * * */2'),
-            array('1,3 * * * */2'),
-            array('1 * 1,2 * */2'),
-            array('1 * 1-2 * */2'),
-            array('1 * 1-2 * */2 */2'),
-            array('@yearly'),
-            array('@annually'),
-            array('@monthly'),
-            array('@weekly'),
-            array('@daily'),
-            array('@hourly'),
-        );
+        return [
+            ['* * * * *'],
+            ['* * * * * *'],
+            ['*/2 * * * *'],
+            ['* */2 * * *'],
+            ['* * */2 * *'],
+            ['* * * */2 *'],
+            ['* * * * */2'],
+            ['* * * * * */2'],
+            ['1 * * * */2'],
+            ['1,3 * * * */2'],
+            ['1 * 1,2 * */2'],
+            ['1 * 1-2 * */2'],
+            ['1 * 1-2 * */2 */2'],
+            ['@yearly'],
+            ['@annually'],
+            ['@monthly'],
+            ['@weekly'],
+            ['@daily'],
+            ['@hourly'],
+        ];
     }
 
     /**
@@ -75,27 +75,27 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
 
     public function invalidPatternProvider()
     {
-        return array(
-            array('* * * *'),
-            array('* * * * * '),
-            array(' * * * * *'),
-            array('a * * * *'),
-            array('* a * * *'),
-            array('* * a * *'),
-            array('* * * a *'),
-            array('* * * * a'),
-            array('60 * * * *'),
-            array('1-60 * * * *'),
-            array('* 24 * * *'),
-            array('* 1-24 * * *'),
-            array('* * 32 * *'),
-            array('* * 1-32 * *'),
-            array('* * * 13 *'),
-            array('* * * 1-13 *'),
-            array('* * * * 7'),
-            array('* * * * 1-7'),
-            array('@unknown'),
-        );
+        return [
+            ['* * * *'],
+            ['* * * * * '],
+            [' * * * * *'],
+            ['a * * * *'],
+            ['* a * * *'],
+            ['* * a * *'],
+            ['* * * a *'],
+            ['* * * * a'],
+            ['60 * * * *'],
+            ['1-60 * * * *'],
+            ['* 24 * * *'],
+            ['* 1-24 * * *'],
+            ['* * 32 * *'],
+            ['* * 1-32 * *'],
+            ['* * * 13 *'],
+            ['* * * 1-13 *'],
+            ['* * * * 7'],
+            ['* * * * 1-7'],
+            ['@unknown'],
+        ];
     }
 
     /**
@@ -109,7 +109,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
 
     public function validTrueProvider()
     {
-        $data = array();
+        $data = [];
         foreach ($this->dateProvider() as $now) {
             $min = $now->format('i');
             $hour = $now->format('H');
@@ -117,12 +117,12 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $month = $now->format('n');
             $dow = $now->format('w');
 
-            $data[] = array('* * * * *', $now);
-            $data[] = array($min.' * * * *',  $now);
-            $data[] = array('* '.$hour.' * * *', $now);
-            $data[] = array('* * '.$day.' * *', $now);
-            $data[] = array('* * * '.$month.' *', $now);
-            $data[] = array('* * * * '.$dow, $now);
+            $data[] = ['* * * * *', $now];
+            $data[] = [$min.' * * * *',  $now];
+            $data[] = ['* '.$hour.' * * *', $now];
+            $data[] = ['* * '.$day.' * *', $now];
+            $data[] = ['* * * '.$month.' *', $now];
+            $data[] = ['* * * * '.$dow, $now];
         }
 
         return $data;
@@ -139,7 +139,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
 
     public function validFalseProvider()
     {
-        $data = array();
+        $data = [];
         foreach ($this->dateProvider() as $now) {
             $min = (int) $now->format('i');
             $badMin = ($min - 1 < 0) ? ($min + 1) : ($min - 1);
@@ -152,11 +152,11 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             $dow = (int) $now->format('w');
             $badDow = ($dow - 1 < 0) ? ($dow + 1) : ($dow - 1);
 
-            $data[] = array($badMin.' * * * *', $now);
-            $data[] = array('* '.$badHour.' * * *', $now);
-            $data[] = array('* * '.$badDay.' * *', $now);
-            $data[] = array('* * * '.$badMonth.' *', $now);
-            $data[] = array('* * * * '.$badDow, $now);
+            $data[] = [$badMin.' * * * *', $now];
+            $data[] = ['* '.$badHour.' * * *', $now];
+            $data[] = ['* * '.$badDay.' * *', $now];
+            $data[] = ['* * * '.$badMonth.' *', $now];
+            $data[] = ['* * * * '.$badDow, $now];
         }
 
         return $data;
@@ -167,7 +167,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function dateProvider()
     {
-        return array(
+        return [
             new \DateTime(),
             new \DateTime('+1 day'),
             new \DateTime('+2 days'),
@@ -175,7 +175,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             new \DateTime('+4 days'),
             new \DateTime('+5 days'),
             new \DateTime('+6 days'),
-        );
+        ];
     }
 
     /**
@@ -191,13 +191,13 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
 
     public function parseRuleProvider()
     {
-        return array(
-            array(array(1), '1', array(0, 59)),
-            array(array(1, 2), '1,2', array(0, 59)),
-            array(array(2, 3, 4), '2-4', array(0, 59)),
-            array(array(0, 30), '*/30', array(0, 59)),
-            array(array(0, 15, 30, 45), '*/15', array(0, 59)),
-        );
+        return [
+            [[1], '1', [0, 59]],
+            [[1, 2], '1,2', [0, 59]],
+            [[2, 3, 4], '2-4', [0, 59]],
+            [[0, 30], '*/30', [0, 59]],
+            [[0, 15, 30, 45], '*/15', [0, 59]],
+        ];
     }
 
     public function testPatternSetters()
