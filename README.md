@@ -121,7 +121,7 @@ If you would like to help, take a look at the [list of issues](http://github.com
 Requirements
 ------------
 
-PHP 5.3.2 or above
+PHP 5.5.0 or above
 
 Author and contributors
 -----------------------
