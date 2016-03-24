@@ -3,7 +3,7 @@
 /.buildpath
 /composer.phar
 /vendor
-phpunit.xml
+/phpunit.xml
 .vagrant
 Vagrantfile
 /composer.lock
