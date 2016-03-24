@@ -102,7 +102,7 @@ class CrontabSchedule implements ScheduleInterface
             return false;
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -176,7 +176,7 @@ class CrontabSchedule implements ScheduleInterface
             return false;
         }
 
-        return;
+        return null;
     }
 
     /**

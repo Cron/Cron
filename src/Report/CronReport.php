@@ -72,6 +72,6 @@ class CronReport implements ReportInterface
             }
         }
 
-        return;
+        return null;
     }
 }
