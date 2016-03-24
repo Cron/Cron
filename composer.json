@@ -17,13 +17,13 @@
         "phpunit/phpunit": "^4.7"
     },
     "autoload": {
-        "psr-0": {
-            "Cron": "src/"
+        "psr-4": {
+            "Cron\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-0": {
-            "Cron": "tests/"
+        "psr-4": {
+            "Cron\\": "tests/"
         }
     },
     "extra": {
