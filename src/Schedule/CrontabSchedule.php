@@ -88,7 +88,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @param \DateTime $now
      *
-     * @return bool|null
+     * @return bool
      */
     protected function checkMinute(\DateTime $now)
     {
@@ -102,7 +102,7 @@ class CrontabSchedule implements ScheduleInterface
             return false;
         }
 
-        return null;
+        return true;
     }
 
     /**
@@ -110,7 +110,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @param \DateTime $now
      *
-     * @return bool|null
+     * @return bool
      */
     protected function checkHour(\DateTime $now)
     {
@@ -122,7 +122,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @param \DateTime $now
      *
-     * @return bool|null
+     * @return bool
      */
     protected function checkDay(\DateTime $now)
     {
@@ -134,7 +134,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @param \DateTime $now
      *
-     * @return bool|null
+     * @return bool
      */
     protected function checkMonth(\DateTime $now)
     {
@@ -146,7 +146,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @param \DateTime $now
      *
-     * @return bool|null
+     * @return bool
      */
     protected function checkDayOfWeek(\DateTime $now)
     {
@@ -176,7 +176,7 @@ class CrontabSchedule implements ScheduleInterface
             return false;
         }
 
-        return null;
+        return true;
     }
 
     /**
