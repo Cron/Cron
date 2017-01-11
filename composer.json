@@ -1,5 +1,5 @@
 {
-    "name": "iamdevice/cron",
+    "name": "cron/cron",
     "type": "library",
     "description": "Cronjobs",
     "license": "MIT",
