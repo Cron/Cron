@@ -216,7 +216,7 @@ class CrontabSchedule implements ScheduleInterface
             'hour' => '[01]?\d|2[0-3]',
             'day' => '0?[1-9]|[12]\d|3[01]',
             'month' => '[1-9]|1[012]',
-            'dow' => '[0-6]',
+            'dow' => '[0-7]',
             'year' => '20([0-9]{2})',
         ];
 

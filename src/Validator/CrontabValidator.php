@@ -56,7 +56,7 @@ class CrontabValidator implements ValidatorInterface
             ],
             [
                 'partName' => 'day of week',
-                'pattern' => '[0-6]',
+                'pattern' => '[0-7]',
                 'required' => true,
             ],
             [

@@ -92,8 +92,8 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
             ['* * 1-32 * *'],
             ['* * * 13 *'],
             ['* * * 1-13 *'],
-            ['* * * * 7'],
-            ['* * * * 1-7'],
+            ['* * * * 8'],
+            ['* * * * 1-8'],
             ['@unknown'],
         ];
     }

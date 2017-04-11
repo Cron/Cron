@@ -101,7 +101,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
 
         $job2 = new \Cron\Job\ShellJob();
         $job2->setCommand('ls -la');
-        $job2->setSchedule(new \Cron\Schedule\CrontabSchedule('0 0 * * *'));
+        $job2->setSchedule(new \Cron\Schedule\CrontabSchedule('0 0 * * 7'));
 
         $resolver = new \Cron\Resolver\ArrayResolver();
         $resolver->addJob($job1);
