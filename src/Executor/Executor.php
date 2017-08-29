@@ -47,8 +47,9 @@ class Executor implements ExecutorInterface
      */
     protected function prepareSets(array $jobs)
     {
+        $now = new \DateTime();
         foreach ($jobs as $job) {
-            if ($job->valid(new \DateTime())) {
+            if ($job->valid($now)) {
                 $set = new ExecutorSet();
                 $set->setJob($job);
                 $set->setReport($job->createReport());
