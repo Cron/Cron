@@ -16,7 +16,7 @@ use Cron\Job\ShellJob;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ExecutorTest extends \PHPUnit_Framework_TestCase
+class ExecutorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ExecutorInterface
@@ -39,6 +39,6 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase
         $job->setCommand('ls -la > test.log');
         $job->setCommand('du -h -d 1 /Users/driesdepeuter/Programming');
 
-        $this->executor->execute([$job]);
+        $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->executor->execute([$job]));
     }
 }

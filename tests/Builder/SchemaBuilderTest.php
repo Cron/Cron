@@ -10,7 +10,7 @@
 
 namespace Cron\Builder;
 
-class SchemaBuilderTest extends \PHPUnit_Framework_TestCase
+class SchemaBuilderTest extends \PHPUnit\Framework\TestCase
 {
     public function testEmpty()
     {

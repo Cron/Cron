@@ -14,7 +14,7 @@ namespace Cron\Schedule;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
+class CrontabScheduleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var CrontabSchedule
@@ -36,7 +36,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidPatterns($pattern)
     {
-        $this->schedule->setPattern($pattern);
+        $this->assertNull($this->schedule->setPattern($pattern));
     }
 
     public function validPatternProvider()
@@ -69,7 +69,7 @@ class CrontabScheduleTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidPatterns($pattern)
     {
-        $this->setExpectedException('\Cron\Exception\InvalidPatternException');
+        $this->expectException('\Cron\Exception\InvalidPatternException');
         $this->schedule->setPattern($pattern);
     }
 

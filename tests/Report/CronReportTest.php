@@ -18,7 +18,7 @@ use Cron\Job\ShellJob;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class CronReportTest extends \PHPUnit_Framework_TestCase
+class CronReportTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var CronReport

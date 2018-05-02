@@ -17,7 +17,7 @@ use Cron\Schedule\CrontabSchedule;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ArrayResolverTest extends \PHPUnit_Framework_TestCase
+class ArrayResolverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ArrayResolver

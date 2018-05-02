@@ -18,7 +18,7 @@ use Cron\Job\ShellJob;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class CronTest extends \PHPUnit_Framework_TestCase
+class CronTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Cron
@@ -111,7 +111,7 @@ class CronTest extends \PHPUnit_Framework_TestCase
         $cron->setExecutor(new \Cron\Executor\Executor());
         $cron->setResolver($resolver);
 
-        $cron->run();
+        $this->assertInstanceOf('\Cron\Report\ReportInterface', $cron->run());
     }
 
     public function testDefaultExecutor()
