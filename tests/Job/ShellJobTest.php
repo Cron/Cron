@@ -17,7 +17,7 @@ use Cron\Schedule\CrontabSchedule;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ShellJobTest extends \PHPUnit_Framework_TestCase
+class ShellJobTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ShellJob
@@ -44,7 +44,8 @@ class ShellJobTest extends \PHPUnit_Framework_TestCase
 
     public function testRunning()
     {
-        $scheduleMock = $this->getMock('\\Cron\\Schedule\\CrontabSchedule');
+        $scheduleMock = $this->getMockBuilder('\\Cron\\Schedule\\CrontabSchedule')
+            ->getMock();
         $scheduleMock
             ->expects($this->exactly(2))
             ->method('valid')

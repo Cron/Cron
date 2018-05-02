@@ -16,7 +16,7 @@ use Cron\Report\JobReport;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class PhpJobTest extends \PHPUnit_Framework_TestCase
+class PhpJobTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var PhpJob
@@ -35,7 +35,8 @@ class PhpJobTest extends \PHPUnit_Framework_TestCase
 
     public function testRunning()
     {
-        $scheduleMock = $this->getMock('\\Cron\\Schedule\\CrontabSchedule');
+        $scheduleMock = $this->getMockBuilder('\\Cron\\Schedule\\CrontabSchedule')
+            ->getMock();
         $scheduleMock
             ->expects($this->exactly(2))
             ->method('valid')

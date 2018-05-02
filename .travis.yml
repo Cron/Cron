@@ -3,27 +3,13 @@ sudo: false
 dist: trusty
 
 php:
-  - 5.5
-  - 5.6
-  - 7.0
   - 7.1
   - 7.2
+  - nightly
   - hhvm-nightly
 
 matrix:
   include:
-    - php: 5.5
-      env: dependencies=lowest
-    - php: 5.5
-      env: dependencies=highest
-    - php: 5.6
-      env: dependencies=lowest
-    - php: 5.6
-      env: dependencies=highest
-    - php: 7.0
-      env: dependencies=lowest
-    - php: 7.0
-      env: dependencies=highest
     - php: 7.1
       env: dependencies=lowest
     - php: 7.1
@@ -32,6 +18,9 @@ matrix:
       env: dependencies=lowest
     - php: 7.2
       env: dependencies=highest
+  allow_failures:
+    - php: hhvm-nightly
+    - php: nightly
 
 before_script:
   - composer self-update -q
