@@ -5,6 +5,7 @@ dist: trusty
 php:
   - 7.1
   - 7.2
+  - 7.3
   - nightly
   - hhvm-nightly
 
@@ -18,6 +19,10 @@ matrix:
       env: dependencies=lowest
     - php: 7.2
       env: dependencies=highest
+    - php: 7.3
+      env: dependencies=lowest
+    - php: 7.3
+      env: dependencies=highest     
   allow_failures:
     - php: hhvm-nightly
     - php: nightly
