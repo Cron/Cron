@@ -48,6 +48,7 @@ class Executor implements ExecutorInterface
     protected function prepareSets(array $jobs)
     {
         $now = new \DateTime();
+        $this->sets = [];
         foreach ($jobs as $job) {
             if ($job->valid($now)) {
                 $set = new ExecutorSet();
