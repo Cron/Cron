@@ -25,8 +25,8 @@ class ShellJob extends AbstractProcessJob
      *
      * @param string $command
      */
-    public function setCommand($command)
+    public function setCommand($command, $cwd = null, array $env = null, $input = null, $timeout = 60, array $options = array())
     {
-        $this->process = new Process($command);
+        $this->process = new Process($command, $cwd, $env, $input, $timeout, $options);
     }
 }
