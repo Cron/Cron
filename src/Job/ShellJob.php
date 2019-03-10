@@ -23,15 +23,20 @@ class ShellJob extends AbstractProcessJob
     /**
      * Set the command to execute as if you would run it in the shell.
      *
-     * @param string $command
+     * @param string         $command The command line to pass to the shell of the OS
+     * @param string|null    $cwd     The working directory or null to use the working dir of the current PHP process
+     * @param array|null     $env     The environment variables or null to use the same environment as the current PHP process
+     * @param mixed|null     $input   The input as stream resource, scalar or \Traversable, or null for no input
+     * @param int|float|null $timeout The timeout in seconds or null to disable
+ 
      */
-    public function setCommand($command, $cwd = null, array $env = null, $input = null, $timeout = 60, array $options = array())
+    public function setCommand($command, $cwd = null, array $env = null, $input = null, $timeout = 60)
     {
         if (method_exists(Process::class, 'fromShellCommandline')) {
-            $this->process = Process::fromShellCommandline($command, $cwd, $env, $input, $timeout, $options);
+            $this->process = Process::fromShellCommandline($command, $cwd, $env, $input, $timeout);
 
         } else {
-            $this->process = new Process($command, $cwd, $env, $input, $timeout, $options);
+            $this->process = new Process($command, $cwd, $env, $input, $timeout);
         }
     }
 }
