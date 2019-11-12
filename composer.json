@@ -1,5 +1,5 @@
 {
-    "name": "cron/cron",
+    "name": "narekps/php-cron",
     "type": "library",
     "description": "Cronjobs",
     "license": "MIT",
