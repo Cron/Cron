@@ -65,7 +65,7 @@ abstract class AbstractProcessJob extends AbstractJob
     {
         $this->report = $report;
         $report->setStartTime(microtime(true));
-        $this->getProcess()->start(function ($type, $buffer) use ($report) {
+        $this->getProcess()->run(function ($type, $buffer) use ($report) {
             if (Process::ERR === $type) {
                 $report->addError($buffer);
             } else {
@@ -114,7 +114,7 @@ abstract class AbstractProcessJob extends AbstractJob
             return $this->getProcess()->isRunning();
         }
 
-        return (bool) posix_getpgid($this->pid);
+        return (bool)posix_getpgid($this->pid);
     }
 
     /**
