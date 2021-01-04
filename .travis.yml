@@ -6,6 +6,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 8.0
   - nightly
   - hhvm-nightly
 
@@ -22,7 +23,11 @@ matrix:
     - php: 7.3
       env: dependencies=lowest
     - php: 7.3
-      env: dependencies=highest     
+      env: dependencies=highest
+    - php: 8.0
+      env: dependencies=lowest
+    - php: 8.0
+      env: dependencies=highest
   allow_failures:
     - php: hhvm-nightly
     - php: nightly
