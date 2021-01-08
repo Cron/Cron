@@ -24,12 +24,12 @@ class ArrayResolverTest extends \PHPUnit\Framework\TestCase
      */
     protected $resolver;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->resolver = new ArrayResolver();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->resolver);
     }

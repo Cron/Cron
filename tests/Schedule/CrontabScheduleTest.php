@@ -21,12 +21,12 @@ class CrontabScheduleTest extends \PHPUnit\Framework\TestCase
      */
     protected $schedule;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->schedule = new CrontabSchedule();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->schedule);
     }
