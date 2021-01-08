@@ -24,12 +24,12 @@ class ShellJobTest extends \PHPUnit\Framework\TestCase
      */
     protected $shellJob;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->shellJob = new ShellJob();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->shellJob);
     }
