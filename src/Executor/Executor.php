@@ -75,12 +75,13 @@ class Executor implements ExecutorInterface
      */
     public function isRunning()
     {
+        $running = false;
         foreach ($this->sets as $set) {
             if ($set->getJob()->isRunning()) {
-                return true;
+                $running = true;
             }
         }
 
-        return false;
+        return $running;
     }
 }
