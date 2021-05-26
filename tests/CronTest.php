@@ -25,12 +25,12 @@ class CronTest extends \PHPUnit\Framework\TestCase
      */
     private $cron;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->cron = new Cron();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->cron);
     }

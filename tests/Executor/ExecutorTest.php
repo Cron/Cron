@@ -23,12 +23,12 @@ class ExecutorTest extends \PHPUnit\Framework\TestCase
      */
     protected $executor;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->executor = new Executor();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->executor);
     }
