@@ -25,12 +25,12 @@ class CronReportTest extends \PHPUnit\Framework\TestCase
      */
     protected $report;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->report = new CronReport();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->report);
     }
@@ -123,7 +123,7 @@ class CronReportTest extends \PHPUnit\Framework\TestCase
         $reportOutput = $report->getReport($job)->getOutput();
 
         $this->assertCount(0, $reportErrorOutput);
-        $this->assertContains('README.md', $reportOutput[0]);
+        $this->assertStringContainsString('README.md', $reportOutput[0]);
     }
 
     public function testErrorOutput()
@@ -138,7 +138,7 @@ class CronReportTest extends \PHPUnit\Framework\TestCase
         $reportErrorOutput = $report->getReport($job)->getError();
         $reportOutput = $report->getReport($job)->getOutput();
 
-        $this->assertContains('thisisnocommand', $reportErrorOutput[0]);
+        $this->assertStringContainsString('thisisnocommand', $reportErrorOutput[0]);
         $this->assertCount(0, $reportOutput);
     }
 

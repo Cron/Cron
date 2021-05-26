@@ -23,12 +23,12 @@ class PhpJobTest extends \PHPUnit\Framework\TestCase
      */
     protected $phpJob;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->phpJob = new PhpJob();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->phpJob);
     }
