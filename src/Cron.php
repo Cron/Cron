@@ -33,7 +33,7 @@ class Cron
     private $executor;
 
     /**
-     * @return Report\ReportInterface[]
+     * @return Report\ReportInterface
      */
     public function run()
     {
