@@ -134,4 +134,12 @@ abstract class AbstractProcessJob extends AbstractJob
     {
         $this->report->setSuccessful($this->getProcess()->isSuccessful());
     }
+    
+    /**
+     * @return JobReport | null
+     */
+    public function getReport(): ?JobReport
+    {
+        return $this->report;
+    }
 }
