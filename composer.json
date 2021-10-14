@@ -1,5 +1,5 @@
 {
-    "name": "cron/cron",
+    "name": "meklis/cron",
     "type": "library",
     "description": "Cronjobs",
     "license": "MIT",
