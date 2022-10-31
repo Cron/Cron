@@ -47,7 +47,10 @@ class Executor implements ExecutorInterface
      */
     protected function prepareSets(array $jobs)
     {
-        $now = new \DateTime();
+        $now = new \DateTime(
+            'now',
+            new \DateTimeZone(getenv('TZ') ?: date_default_timezone_get())
+        );
         $this->sets = [];
         foreach ($jobs as $job) {
             if ($job->valid($now)) {
