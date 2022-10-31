@@ -55,7 +55,10 @@ class ArrayResolver implements ResolverInterface
     public function resolve()
     {
         $jobs = [];
-        $now = new \DateTime();
+        $now = new \DateTime(
+            'now',
+            new \DateTimeZone(getenv('TZ') ?: date_default_timezone_get())
+        );
 
         foreach ($this->jobs as $job) {
             if ($job->valid($now)) {
