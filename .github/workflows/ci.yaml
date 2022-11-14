@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: php-actions/composer@v5
+    - uses: php-actions/composer@v6
       with:
         php_version:  ${{ matrix.php_version }}
     - uses: php-actions/phpunit@v3
