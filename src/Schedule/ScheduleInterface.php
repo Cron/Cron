@@ -23,5 +23,5 @@ interface ScheduleInterface
      *
      * @return bool
      */
-    public function valid(\DateTime $now);
+    public function valid(\DateTimeInterface $now);
 }

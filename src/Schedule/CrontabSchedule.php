@@ -62,7 +62,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool
      */
-    public function valid(\DateTime $now)
+    public function valid(\DateTimeInterface $now)
     {
         if (false === $this->checkMinute($now)) {
             return false;
@@ -90,7 +90,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool
      */
-    protected function checkMinute(\DateTime $now)
+    protected function checkMinute(\DateTimeInterface $now)
     {
         if ($this->parts['min'] != '*') {
             foreach ($this->parseRule($this->parts['min'], 0, 59) as $value) {
@@ -112,7 +112,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool
      */
-    protected function checkHour(\DateTime $now)
+    protected function checkHour(\DateTimeInterface $now)
     {
         return $this->checkPart('hour', 0, 23, ['H', 'G'], $now);
     }
@@ -124,7 +124,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool
      */
-    protected function checkDay(\DateTime $now)
+    protected function checkDay(\DateTimeInterface $now)
     {
         return $this->checkPart('day', 0, 31, ['j', 'd'], $now);
     }
@@ -136,7 +136,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool
      */
-    protected function checkMonth(\DateTime $now)
+    protected function checkMonth(\DateTimeInterface $now)
     {
         return $this->checkPart('month', 1, 12, ['n', 'm'], $now);
     }
@@ -148,7 +148,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool
      */
-    protected function checkDayOfWeek(\DateTime $now)
+    protected function checkDayOfWeek(\DateTimeInterface $now)
     {
         return $this->checkPart('dow', 0, 6, ['w'], $now);
     }
@@ -162,7 +162,7 @@ class CrontabSchedule implements ScheduleInterface
      *
      * @return bool|null
      */
-    protected function checkPart($partName, $min, $max, array $formats, \DateTime $now)
+    protected function checkPart($partName, $min, $max, array $formats, \DateTimeInterface $now)
     {
         if ($this->parts[$partName] != '*') {
             foreach ($this->parseRule($this->parts[$partName], $min, $max) as $value) {
