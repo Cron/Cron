@@ -44,7 +44,7 @@ class CrontabSchedule implements ScheduleInterface
     private $validator;
 
     /**
-     * @param null $pattern
+     * @param null|string $pattern
      */
     public function __construct($pattern = null)
     {
