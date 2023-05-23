@@ -13,11 +13,12 @@ namespace Cron\Resolver;
 
 use Cron\Job\ShellJob;
 use Cron\Schedule\CrontabSchedule;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ArrayResolverTest extends \PHPUnit\Framework\TestCase
+class ArrayResolverTest extends TestCase
 {
     /**
      * @var ArrayResolver

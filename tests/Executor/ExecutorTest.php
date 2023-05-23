@@ -12,11 +12,13 @@
 namespace Cron\Executor;
 
 use Cron\Job\ShellJob;
+use Cron\Report\ReportInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ExecutorTest extends \PHPUnit\Framework\TestCase
+class ExecutorTest extends TestCase
 {
     /**
      * @var ExecutorInterface
@@ -39,6 +41,6 @@ class ExecutorTest extends \PHPUnit\Framework\TestCase
         $job->setCommand('ls -la > test.log');
         $job->setCommand('du -h -d 1 /Users/driesdepeuter/Programming');
 
-        $this->assertInstanceOf('\Cron\Report\ReportInterface', $this->executor->execute([$job]));
+        $this->assertInstanceOf(ReportInterface::class, $this->executor->execute([$job]));
     }
 }
