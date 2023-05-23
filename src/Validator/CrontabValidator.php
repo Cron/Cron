@@ -71,7 +71,7 @@ class CrontabValidator implements ValidatorInterface
                 continue;
             }
             if (!isset($parts[$i]) || !preg_match($this->buildPattern($test['pattern']), $parts[$i])) {
-                throw new InvalidPatternException(sprintf('Invalid %s "%s".', $test['partName'], isset($parts[$i]) ? $parts[$i] : ''));
+                throw new InvalidPatternException(sprintf('Invalid %s "%s".', $test['partName'], $parts[$i] ?? ''));
             }
         }
 

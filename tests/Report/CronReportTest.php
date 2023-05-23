@@ -11,14 +11,18 @@
 
 namespace Cron\Report;
 
+use Cron\Cron;
 use Cron\Job\JobInterface;
 use Cron\Job\PhpJob;
 use Cron\Job\ShellJob;
+use Cron\Resolver\ArrayResolver;
+use Cron\Schedule\CrontabSchedule;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class CronReportTest extends \PHPUnit\Framework\TestCase
+class CronReportTest extends TestCase
 {
     /**
      * @var CronReport
@@ -145,14 +149,14 @@ class CronReportTest extends \PHPUnit\Framework\TestCase
     /**
      * @param JobInterface $job
      *
-     * @return \Cron\Cron
+     * @return Cron
      */
     protected function createCron(JobInterface $job)
     {
-        $resolver = new \Cron\Resolver\ArrayResolver();
+        $resolver = new ArrayResolver();
         $resolver->addJob($job);
 
-        $cron = new \Cron\Cron();
+        $cron = new Cron();
         $cron->setExecutor(new \Cron\Executor\Executor());
         $cron->setResolver($resolver);
 
@@ -166,9 +170,9 @@ class CronReportTest extends \PHPUnit\Framework\TestCase
      */
     protected function createJob($command)
     {
-        $job = new \Cron\Job\ShellJob();
+        $job = new ShellJob();
         $job->setCommand($command);
-        $job->setSchedule(new \Cron\Schedule\CrontabSchedule('* * * * *'));
+        $job->setSchedule(new CrontabSchedule('* * * * *'));
 
         return $job;
     }

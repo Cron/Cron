@@ -11,10 +11,13 @@
 
 namespace Cron\Schedule;
 
+use Cron\Exception\InvalidPatternException;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class CrontabScheduleTest extends \PHPUnit\Framework\TestCase
+class CrontabScheduleTest extends TestCase
 {
     /**
      * @var CrontabSchedule
@@ -69,7 +72,7 @@ class CrontabScheduleTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidPatterns($pattern)
     {
-        $this->expectException('\Cron\Exception\InvalidPatternException');
+        $this->expectException(InvalidPatternException::class);
         $this->schedule->setPattern($pattern);
     }
 
@@ -183,7 +186,7 @@ class CrontabScheduleTest extends \PHPUnit\Framework\TestCase
      */
     public function testParseRule($expected, $rule, $minMax)
     {
-        $method = new \ReflectionMethod('\Cron\Schedule\CrontabSchedule', 'parseRule');
+        $method = new \ReflectionMethod(CrontabSchedule::class, 'parseRule');
         $method->setAccessible(true);
 
         $this->assertEquals($expected, $method->invoke(new CrontabSchedule(), $rule, $minMax[0], $minMax[1]));

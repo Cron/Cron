@@ -13,11 +13,12 @@ namespace Cron\Job;
 
 use Cron\Report\JobReport;
 use Cron\Schedule\CrontabSchedule;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class ShellJobTest extends \PHPUnit\Framework\TestCase
+class ShellJobTest extends TestCase
 {
     /**
      * @var ShellJob
@@ -44,7 +45,7 @@ class ShellJobTest extends \PHPUnit\Framework\TestCase
 
     public function testRunning()
     {
-        $scheduleMock = $this->getMockBuilder('\\Cron\\Schedule\\CrontabSchedule')
+        $scheduleMock = $this->getMockBuilder(CrontabSchedule::class)
             ->getMock();
         $scheduleMock
             ->expects($this->exactly(2))
