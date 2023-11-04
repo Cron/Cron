@@ -18,8 +18,4 @@ jobs:
     - uses: php-actions/phpunit@v3
       with:
         php_version:  ${{ matrix.php_version }}
-        php_extensions: xdebug
         configuration: phpunit.xml.dist
-        args: --coverage-text
-      env:
-        XDEBUG_MODE: coverage
