@@ -21,3 +21,5 @@ jobs:
         php_extensions: xdebug
         configuration: phpunit.xml.dist
         args: --coverage-text
+      env:
+        XDEBUG_MODE: coverage
