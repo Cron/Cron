@@ -50,7 +50,7 @@ class ArrayResolverTest extends TestCase
         $this->assertEquals($expected, $this->resolver->resolve());
     }
 
-    public function resolverProvider()
+    public static function resolverProvider()
     {
         $now = new \DateTime();
         $dow = (int) $now->format('w');

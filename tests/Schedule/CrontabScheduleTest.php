@@ -42,7 +42,7 @@ class CrontabScheduleTest extends TestCase
         $this->assertNull($this->schedule->setPattern($pattern));
     }
 
-    public function validPatternProvider()
+    public static function validPatternProvider()
     {
         return [
             ['* * * * *'],
@@ -76,7 +76,7 @@ class CrontabScheduleTest extends TestCase
         $this->schedule->setPattern($pattern);
     }
 
-    public function invalidPatternProvider()
+    public static function invalidPatternProvider()
     {
         return [
             ['* * * *'],
@@ -110,10 +110,10 @@ class CrontabScheduleTest extends TestCase
         $this->assertTrue($this->schedule->valid($now));
     }
 
-    public function validTrueProvider()
+    public static function validTrueProvider()
     {
         $data = [];
-        foreach ($this->dateProvider() as $now) {
+        foreach (self::dateProvider() as $now) {
             $min = $now->format('i');
             $hour = $now->format('H');
             $day = $now->format('d');
@@ -140,10 +140,10 @@ class CrontabScheduleTest extends TestCase
         $this->assertFalse($this->schedule->valid($now));
     }
 
-    public function validFalseProvider()
+    public static function validFalseProvider()
     {
         $data = [];
-        foreach ($this->dateProvider() as $now) {
+        foreach (self::dateProvider() as $now) {
             $min = (int) $now->format('i');
             $badMin = ($min - 1 < 0) ? ($min + 1) : ($min - 1);
             $hour = (int) $now->format('H');
@@ -168,7 +168,7 @@ class CrontabScheduleTest extends TestCase
     /**
      * @return \DateTime[]
      */
-    public function dateProvider()
+    public static function dateProvider()
     {
         return [
             new \DateTime(),
@@ -192,7 +192,7 @@ class CrontabScheduleTest extends TestCase
         $this->assertEquals($expected, $method->invoke(new CrontabSchedule(), $rule, $minMax[0], $minMax[1]));
     }
 
-    public function parseRuleProvider()
+    public static function parseRuleProvider()
     {
         return [
             [[1], '1', [0, 59]],
