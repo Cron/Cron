@@ -15,7 +15,7 @@ jobs:
     - uses: php-actions/composer@v6
       with:
         php_version:  ${{ matrix.php_version }}
-    - uses: php-actions/phpunit@v9
+    - uses: php-actions/phpunit@v3
       with:
         php_version:  ${{ matrix.php_version }}
         php_extensions: xdebug
