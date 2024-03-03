@@ -1,7 +1,7 @@
 Cron
 ====
  [![Packagist](https://img.shields.io/packagist/v/cron/cron.svg?style=flat-square)](https://packagist.org/packages/cron/cron)
- [![Build status](https://img.shields.io/github/actions/workflow/status/cron/cron/ci.yml?style=flat-square)](https://github.com/cron/cron/actions/workflows/ci.yml)
+ [![Build status](https://img.shields.io/github/actions/workflow/status/cron/cron/ci.yaml?style=flat-square)](https://github.com/cron/cron/actions/workflows/ci.yml)
  [![Quality](https://img.shields.io/scrutinizer/g/Cron/Cron.svg?style=flat-square)](https://scrutinizer-ci.com/g/Cron/Cron)
  [![Coverage](https://img.shields.io/scrutinizer/coverage/g/Cron/Cron.svg?style=flat-square)](https://scrutinizer-ci.com/g/Cron/Cron)
  [![Packagist](https://img.shields.io/packagist/dt/Cron/Cron.svg?style=flat-square)](https://packagist.org/packages/cron/cron)
