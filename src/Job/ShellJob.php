@@ -25,7 +25,7 @@ class ShellJob extends AbstractProcessJob
      *
      * @param string $command
      */
-    public function setCommand($command, $cwd = null, array $env = null, $input = null, $timeout = 60, array $options = [])
+    public function setCommand($command, $cwd = null, ?array $env = null, $input = null, $timeout = 60, array $options = [])
     {
         if (method_exists(Process::class, 'fromShellCommandline')) {
             $this->process = Process::fromShellCommandline($command, $cwd, $env, $input, $timeout);
