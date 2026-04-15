@@ -50,6 +50,26 @@ class ArrayResolver implements ResolverInterface
     }
 
     /**
+     * @param JobInterface $job
+     */
+    public function removeJob(JobInterface $job)
+    {
+        $this->jobs = array_values(array_filter($this->jobs, function ($existing) use ($job) {
+            return $existing !== $job;
+        }));
+    }
+
+    /**
+     * @param JobInterface[] $jobs
+     */
+    public function removeJobs(array $jobs)
+    {
+        foreach ($jobs as $job) {
+            $this->removeJob($job);
+        }
+    }
+
+    /**
      * @return JobInterface[]
      */
     public function resolve()
