@@ -42,7 +42,7 @@ class PhpJobTest extends TestCase
         $scheduleMock
             ->expects($this->exactly(2))
             ->method('valid')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->phpJob->setSchedule($scheduleMock);
         $expected = 'hello world!';

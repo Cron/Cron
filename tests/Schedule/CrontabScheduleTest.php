@@ -12,6 +12,7 @@
 namespace Cron\Schedule;
 
 use Cron\Exception\InvalidPatternException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -34,9 +35,7 @@ class CrontabScheduleTest extends TestCase
         unset($this->schedule);
     }
 
-    /**
-     * @dataProvider validPatternProvider
-     */
+    #[DataProvider('validPatternProvider')]
     public function testValidPatterns($pattern)
     {
         $this->assertNull($this->schedule->setPattern($pattern));
@@ -67,9 +66,7 @@ class CrontabScheduleTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider invalidPatternProvider
-     */
+    #[DataProvider('invalidPatternProvider')]
     public function testInvalidPatterns($pattern)
     {
         $this->expectException(InvalidPatternException::class);
@@ -101,9 +98,7 @@ class CrontabScheduleTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider validTrueProvider
-     */
+    #[DataProvider('validTrueProvider')]
     public function testValidTrue($pattern, $now)
     {
         $this->schedule->setPattern($pattern);
@@ -131,9 +126,7 @@ class CrontabScheduleTest extends TestCase
         return $data;
     }
 
-    /**
-     * @dataProvider validFalseProvider
-     */
+    #[DataProvider('validFalseProvider')]
     public function testValidFalse($pattern, $now)
     {
         $this->schedule->setPattern($pattern);
@@ -181,9 +174,7 @@ class CrontabScheduleTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider parseRuleProvider
-     */
+    #[DataProvider('parseRuleProvider')]
     public function testParseRule($expected, $rule, $minMax)
     {
         $method = new \ReflectionMethod(CrontabSchedule::class, 'parseRule');

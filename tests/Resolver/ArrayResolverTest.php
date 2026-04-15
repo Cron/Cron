@@ -13,6 +13,7 @@ namespace Cron\Resolver;
 
 use Cron\Job\ShellJob;
 use Cron\Schedule\CrontabSchedule;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,9 +41,7 @@ class ArrayResolverTest extends TestCase
         $this->assertEquals([], $this->resolver->resolve());
     }
 
-    /**
-     * @dataProvider resolverProvider
-     */
+    #[DataProvider('resolverProvider')]
     public function testResolve($all, $expected)
     {
         $this->resolver->addJobs($all);
