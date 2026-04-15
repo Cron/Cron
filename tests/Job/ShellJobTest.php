@@ -50,7 +50,7 @@ class ShellJobTest extends TestCase
         $scheduleMock
             ->expects($this->exactly(2))
             ->method('valid')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->shellJob->setSchedule($scheduleMock);
         $this->shellJob->setCommand('sleep 10');
